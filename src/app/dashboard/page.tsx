@@ -1,19 +1,17 @@
+import DashboardInnerContent from '@/components/Dashboard/DashboardInnerContent';
+import BackgroundEmeraldToRed from '@/lib/BackgroundEmeraldToRed';
 import { FC } from 'react';
+
+//TODO: Fetch snippets
 
 const Dashboard: FC = () => {
   return (
-    <main>
-      <aside>
-        <h2>Your snippets</h2>
-        <ul>
-          <li>one</li>
-          <li>two</li>
-          <li>three</li>
-          <li>four</li>
-          <li>five</li>
-        </ul>
-      </aside>
-    </main>
+    <BackgroundEmeraldToRed innerPadding={''}>
+      <div className='border-b-2 border-zinc-600 p-4'>
+        <h1 className=''>Dashboard</h1>
+      </div>
+      <DashboardInnerContent />
+    </BackgroundEmeraldToRed>
   );
 };
 
