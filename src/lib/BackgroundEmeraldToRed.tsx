@@ -18,9 +18,9 @@ const BackgroundEmeraldToRed: FC<
 }) => {
   return (
     <div
-      className={`m-5  rounded-md  bg-gradient-to-br from-${colorStart}-500 to-${colorEnd}-700 p-[2px]`}
+      className={`m-5 rounded-md bg-gradient-to-br from-emerald-500 to-red-700 p-[2px]`}
     >
-      <div className={`bg-${background}-900 rounded-md  ${innerPadding}`}>
+      <div className={`bg-zinc-900 rounded-md  ${innerPadding}`}>
         {children}
       </div>
     </div>

@@ -19,8 +19,8 @@ export default function RootLayout({
 }) {
   return (
     <ClerkProvider>
-      <html lang='en'>
-        <body className={`${inter.className} bg-zinc-800 text-zinc-200`}>
+      <html className='scroll-smooth' lang='en'>
+        <body className={`${inter.className} p-2 bg-zinc-800 text-zinc-200`}>
           <Navbar />
           {children}
           <Footer />
