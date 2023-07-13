@@ -8,7 +8,7 @@ import { useState } from 'react';
 
 export default function Home() {
   const [chosenLanguage, setChosenLanguage] = useState<languageTypes>('All');
-  const choseableLanguages: languageTypes[] = ['HTML', 'JavaScript', 'React'];
+  const choseableLanguages: languageTypes[] = ['HTML', 'JavaScript', 'JSX'];
   return (
     <>
       <WelcomeMain

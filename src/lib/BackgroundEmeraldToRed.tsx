@@ -1,26 +1,30 @@
 import { FC, PropsWithChildren } from 'react';
 
 type BackgroundEmeraldToRedProps = {
-  colorStart?: String;
-  colorEnd?: String;
-  background?: String;
-  innerPadding?: String;
+  colorStart?: string;
+  colorEnd?: string;
+  background?: string;
+  innerPadding?: string;
+  className?: string;
+  marginAround?: string;
 };
 
 const BackgroundEmeraldToRed: FC<
   PropsWithChildren<BackgroundEmeraldToRedProps>
 > = ({
+  marginAround: marginTop = '5',
+  className = '',
   children,
-  innerPadding = 'p-3',
+  innerPadding = '3',
   background = 'zinc',
   colorEnd = 'yellow',
   colorStart = 'emerald',
 }) => {
   return (
     <div
-      className={`m-5 rounded-md bg-gradient-to-br from-emerald-500 to-red-700 p-[2px]`}
+      className={`${className} m-${marginTop} rounded-md bg-gradient-to-br from-emerald-500 to-red-700 p-[2px]`}
     >
-      <div className={`bg-zinc-900 rounded-md  ${innerPadding}`}>
+      <div className={`bg-zinc-900 rounded-md  p-${innerPadding}`}>
         {children}
       </div>
     </div>

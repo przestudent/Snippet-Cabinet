@@ -3,7 +3,7 @@ import { FC } from 'react';
 
 const Footer: FC = () => {
   return (
-    <BackgroundEmeraldToRed>
+    <BackgroundEmeraldToRed marginAround='2'>
       <footer className=''>FOOTER</footer>
     </BackgroundEmeraldToRed>
   );

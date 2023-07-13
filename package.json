@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^4.21.15",
+    "@clerk/themes": "^1.7.5",
+    "@codemirror/lang-html": "^6.4.5",
     "@codemirror/lang-javascript": "^6.1.9",
     "@prisma/client": "^5.0.0",
     "@types/react": "18.2.14",

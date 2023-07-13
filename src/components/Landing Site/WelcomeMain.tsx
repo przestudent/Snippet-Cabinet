@@ -1,6 +1,7 @@
 import BackgroundEmeraldToRed from '@/lib/BackgroundEmeraldToRed';
 import { Dispatch, FunctionComponent, SetStateAction } from 'react';
 import Image from 'next/image';
+import GradientButton from '@/lib/GradientButton';
 
 interface WelcomeMainProps {
   choseableLanguages: languageTypes[];
@@ -30,12 +31,7 @@ const WelcomeMain: FunctionComponent<WelcomeMainProps> = ({
             ))}
           </div>
           <div className='flex justify-center mt-6'>
-            <a
-              href='#listing'
-              className='rounded-md bg-gradient-to-br from-emerald-500 via-emerald-500 to-red-600 p-3 text-2xl '
-            >
-              Check it out!
-            </a>
+            <GradientButton innerButtonText='Check it out!' href='#listing' />
           </div>
         </div>
       </div>

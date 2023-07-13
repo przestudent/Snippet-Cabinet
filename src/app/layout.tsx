@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import Navbar from '@/components/Navigation/Navbar';
 import { ClerkProvider } from '@clerk/nextjs';
+import { dark } from '@clerk/themes';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -18,7 +19,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ClerkProvider>
+    <ClerkProvider
+      appearance={{
+        baseTheme: dark,
+      }}
+    >
       <html className='scroll-smooth' lang='en'>
         <body className={`${inter.className} p-2 bg-zinc-800 text-zinc-200`}>
           <Navbar />

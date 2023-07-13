@@ -1,16 +1,21 @@
+import DashboardFetchSnippets from '@/components/Dashboard/DashBoardFetchSnippets';
 import DashboardInnerContent from '@/components/Dashboard/DashboardInnerContent';
 import BackgroundEmeraldToRed from '@/lib/BackgroundEmeraldToRed';
+import { auth, currentUser } from '@clerk/nextjs';
+import Link from 'next/link';
 import { FC } from 'react';
 
 //TODO: Fetch snippets
 
-const Dashboard: FC = () => {
+const Dashboard: FC = async () => {
+  const user = await currentUser();
+  if (!user) <Link href={'/sign-in'}></Link>;
   return (
-    <BackgroundEmeraldToRed innerPadding={''}>
-      <div className='border-b-2 border-zinc-600 p-4'>
-        <h1 className=''>Dashboard</h1>
+    <BackgroundEmeraldToRed innerPadding={''} className='mt-5'>
+      <div className='border-b-2 border-zinc-600 p-6'>
+        <h1 className='text-4xl text-emerald-500'>Dashboard</h1>
       </div>
-      <DashboardInnerContent />
+      <DashboardFetchSnippets />
     </BackgroundEmeraldToRed>
   );
 };

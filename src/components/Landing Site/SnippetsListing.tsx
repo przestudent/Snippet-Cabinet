@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
 interface SnippetListingProps {
-  chosenLanguage: String;
+  chosenLanguage: string;
 }
 
 const SnippetListing: FC<SnippetListingProps> = ({ chosenLanguage }) => {

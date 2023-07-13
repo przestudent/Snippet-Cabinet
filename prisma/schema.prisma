@@ -12,11 +12,13 @@ datasource db {
 }
 
 model User {
-  userId Int @id @default(autoincrement())
-
+  userId    Int      @id @default(autoincrement())
+  clerkId   String   @unique
+  email     String   @unique
   createdAt DateTime @default(now())
 
-  username String
+  userSnippets UserSnippets[]
+  username     String
 }
 
 model UserList {
@@ -25,11 +27,28 @@ model UserList {
   createdAt DateTime @default(now())
 }
 
+model UserSnippets {
+  snippetId Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+
+  langType       languageTypes
+  tagBoilerPlate Boolean
+  snippetCode    String
+  snippetTitle   String
+  userOwner      User          @relation(fields: [userOwnerId], references: [userId])
+  userOwnerId    Int
+
+  @@index([userOwnerId])
+}
+
 //TODO: do this later
+
+enum snippetsTags {
+  boilerPlate
+}
 
 enum languageTypes {
   JavaScript
   HTML
-  React
-  All
+  JSX
 }
