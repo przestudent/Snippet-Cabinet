@@ -16,6 +16,7 @@ import Image from 'next/image';
 import EditSnippetName from './EditSnippetName';
 import SetEditorLang from './SetEditorLang';
 import SnippetTagSection from './SnippetTagSection';
+import PostButton from './PostButton';
 interface DashboardCodeEditorProps {
   snippetInfo: snippetInfo;
   setSnippetInfo: Dispatch<SetStateAction<snippetInfo>>;
@@ -28,9 +29,11 @@ const DashboardCodeEditor: FC<DashboardCodeEditorProps> = ({
   const [formattedText, setFormattedText] = useState('');
   const editorConfig = [javascript(), javascript({ jsx: true }), html()];
   const [editorConfigOption, setEditorConfigOption] = useState<0 | 1 | 2>(1);
+  const editorCodeRef = useRef<string>(snippetInfo.editorCode);
   const onChange = useCallback(
     (value: string, { view }: { view: { contentDOM: HTMLElement } }) => {
       // setFormattedText(view.contentDOM.innerHTML);
+      editorCodeRef.current = value;
     },
     []
   );
@@ -51,9 +54,10 @@ const DashboardCodeEditor: FC<DashboardCodeEditorProps> = ({
               editorConfigOption={editorConfigOption}
               setEditorConfigOption={setEditorConfigOption}
             />
-            <button>
-              <GradientButton innerButtonText='Save' />
-            </button>
+            <PostButton
+              editorCodeRef={editorCodeRef}
+              snippetInfo={snippetInfo}
+            />
           </div>
         </div>
         {/* TODO: ADD SUSPENSE MAYBE? */}

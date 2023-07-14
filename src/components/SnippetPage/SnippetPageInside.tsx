@@ -1,9 +1,21 @@
 import { FC } from 'react';
 import SnippetPageCodeEditor from './SnippetPageCodeEditor';
+import { prisma } from '@/db/db';
 
-interface SnippetPageInsideProps {}
+interface SnippetPageInsideProps {
+  snippetId: number;
+}
 
-const SnippetPageInside: FC<SnippetPageInsideProps> = () => {
+async function fetchSnippet(snippetId: number) {
+  const snippet = await prisma.userSnippets.findMany({
+    where: { snippetId: snippetId, public: true },
+  });
+  return snippet;
+}
+
+const SnippetPageInside: FC<SnippetPageInsideProps> = async ({ snippetId }) => {
+  const snippet = await fetchSnippet(snippetId);
+
   return (
     <>
       <div className='flex justify-between px-6 pt-4  border-zinc-500 border-b-2'>
