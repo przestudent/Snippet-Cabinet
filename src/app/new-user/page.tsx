@@ -5,17 +5,18 @@ import { prisma } from '@/db/db';
 
 const createNewUser = async () => {
   const user = await currentUser();
-  //   const match = await prisma.user.findUnique({
-  //     where: { clerkId: user?.id as string },
-  //   });
-  //   if (!match) {
-  //     await prisma.user.create({
-  //       data: {
-  //         clerkId: user?.id as string,
-  //         email: user?.emailAddresses[0].emailAddress as string,
-  //       },
-  //     });
-  //   }
+  const match = await prisma.user.findUnique({
+    where: { clerkId: user?.id as string },
+  });
+  if (!match) {
+    const prisRes = await prisma.user.create({
+      data: {
+        clerkId: user!.id,
+        email: user!.emailAddresses[0].emailAddress,
+        username: user!.username ?? user!.lastName ?? '',
+      },
+    });
+  }
 
   redirect('/dashboard');
 };

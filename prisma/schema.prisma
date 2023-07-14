@@ -34,11 +34,12 @@ model UserSnippets {
   public         Boolean
   langType       languageTypes
   tagBoilerPlate Boolean       @default(false)
-  snippetCode    String
+  snippetCode    String        @db.LongText
   snippetTitle   String
   userOwner      User          @relation(fields: [userOwnerId], references: [userId])
   userOwnerId    Int
 
+  @@unique([snippetTitle, userOwnerId])
   @@index([userOwnerId])
 }
 
