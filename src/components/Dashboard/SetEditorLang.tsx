@@ -1,6 +1,7 @@
-import { Dispatch, FC, SetStateAction, useState } from 'react';
+import { Dispatch, FC, SetStateAction, use, useState } from 'react';
 import Image from 'next/image';
 import BackgroundEmeraldToRed from '@/lib/BackgroundEmeraldToRed';
+import useOutsideClick from '@/hooks/useOutsideClick';
 interface SetEditorLangProps {
   setSnippetInfo: Dispatch<SetStateAction<snippetInfo>>;
   snippetInfo: snippetInfo;
@@ -23,7 +24,12 @@ const SetEditorLang: FC<SetEditorLangProps> = ({
     { lang: 'JSX', configNumberOption: 1 },
     { lang: 'HTML', configNumberOption: 2 },
   ];
-  console.log('editor lang reruns', snippetInfo);
+  //   function functionForOutside(){
+  //     return function(){
+  //       setOpenDropdown(false);
+  //     }
+  //   }
+  // useOutsideClick({ref,functionForOutside})
   return (
     <span className='mr-8'>
       <span>
