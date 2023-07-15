@@ -2,6 +2,8 @@ import { Dispatch, FC, SetStateAction, use, useState } from 'react';
 import Image from 'next/image';
 import BackgroundEmeraldToRed from '@/lib/BackgroundEmeraldToRed';
 import useOutsideClick from '@/hooks/useOutsideClick';
+import { languageTypes } from '@prisma/client';
+import { snippetInfo } from '../../../global';
 interface SetEditorLangProps {
   setSnippetInfo: Dispatch<SetStateAction<snippetInfo>>;
   snippetInfo: snippetInfo;

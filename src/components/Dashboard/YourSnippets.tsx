@@ -9,7 +9,7 @@ interface YourSnippetsProps {
 const YourSnippets: FC<YourSnippetsProps> = ({ snippets }) => {
   const [isBeingEdited, setIsbeingEdited] = useState(false);
   return (
-    <aside className='pl-3 pr-1 border-r-2 w-[30%]  border-zinc-600'>
+    <aside className='px-3 border-r-2 w-[30%]  border-zinc-600'>
       <h2 className='p-4 text-xl'>Your snippets</h2>
       <ul>
         {snippets.map((snippet) => (
@@ -34,8 +34,10 @@ const YourSnippets: FC<YourSnippetsProps> = ({ snippets }) => {
               src={`/${snippet.langType}.svg`}
             />
             {isBeingEdited ? (
-              <div className='absolute top-0 left-0 w-full h-full flex bg-[rgb(0,0,0,0.5)] items-center justify-center'>
-                <div className='text-emerald-400 font-bold'>Editing...</div>
+              <div className=' absolute top-0 left-0 w-full h-full flex bg-[rgb(0,0,0,0.5)] items-center justify-center'>
+                <div className='animate-pulse text-emerald-400 font-bold'>
+                  Editing...
+                </div>
               </div>
             ) : (
               <></>

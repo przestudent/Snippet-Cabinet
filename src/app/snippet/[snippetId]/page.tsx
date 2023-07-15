@@ -12,7 +12,7 @@ const SnippetPage: FC<SnippetPageProps> = ({ params }) => {
   console.log(params.snippetId);
   return (
     <BackgroundEmeraldToRed innerPadding='0'>
-      <SnippetPageInside snippetId={parseInt(params.snippetId)} />
+      <SnippetPageInside snippetId={params.snippetId} />
     </BackgroundEmeraldToRed>
   );
 };

@@ -2,6 +2,7 @@ import BackgroundEmeraldToRed from '@/lib/BackgroundEmeraldToRed';
 import { Dispatch, FunctionComponent, SetStateAction } from 'react';
 import Image from 'next/image';
 import GradientButton from '@/lib/GradientButton';
+import { languageTypes } from '@prisma/client';
 
 interface WelcomeMainProps {
   choseableLanguages: languageTypes[];

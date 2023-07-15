@@ -3,6 +3,7 @@ import { FC, useState } from 'react';
 import DashboardCodeEditor from './DashboardCodeEditor';
 import YourSnippets from './YourSnippets';
 import { UserSnippets } from '@prisma/client';
+import { snippetInfo } from '../../../global';
 
 interface DashboardInnerContentProps {
   snippets: UserSnippets[];

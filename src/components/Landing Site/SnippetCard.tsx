@@ -7,6 +7,7 @@ import { javascript } from '@codemirror/lang-javascript';
 import BackgroundEmeraldToRed from '@/lib/BackgroundEmeraldToRed';
 import GradientButton from '@/lib/GradientButton';
 import Link from 'next/link';
+import { snippetsData } from '../../../global';
 
 interface SnippetCardProps {
   snippet: snippetsData;

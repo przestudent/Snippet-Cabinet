@@ -10,6 +10,7 @@ import {
 import Image from 'next/image';
 import useOutsideClick from '@/hooks/useOutsideClick';
 import InputEditTitleField from './InputEditTitleField';
+import { snippetInfo } from '../../../global';
 
 interface EditSnippetNameProps {
   snippetInfo: snippetInfo;

@@ -1,5 +1,6 @@
 import GradientButton from '@/lib/GradientButton';
 import { FC, FunctionComponent, MutableRefObject } from 'react';
+import { snippetInfo } from '../../../global';
 
 interface PostButtonProps {
   editorCodeRef: MutableRefObject<string | undefined>;

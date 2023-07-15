@@ -3,6 +3,7 @@ import { FC, useState } from 'react';
 import SnippetCard from './SnippetCard';
 import Modal from '@/lib/Modal';
 import { createPortal } from 'react-dom';
+import { snippetsData } from '../../../global';
 
 interface SnippetListingProps {
   chosenLanguage: string;

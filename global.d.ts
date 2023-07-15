@@ -1,4 +1,4 @@
-type languageTypes = 'JSX' | 'JavaScript' | 'HTML';
+import { languageTypes } from '@prisma/client';
 
 type snippetInfo = {
   editorCode: string;

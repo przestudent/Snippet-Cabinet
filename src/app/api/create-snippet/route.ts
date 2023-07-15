@@ -1,6 +1,7 @@
 import { prisma } from '@/db/db';
 import { currentUser } from '@clerk/nextjs';
 import { NextResponse } from 'next/server';
+import { snippetInfo } from '../../../../global';
 
 export async function POST(req: Request) {
   const user = await currentUser();

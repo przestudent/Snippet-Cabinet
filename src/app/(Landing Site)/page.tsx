@@ -5,6 +5,7 @@ import { prisma } from '@/db/db';
 import BackgroundEmeraldToRed from '@/lib/BackgroundEmeraldToRed';
 import Image from 'next/image';
 import { useState } from 'react';
+import { snippetsData } from '../../../global';
 // import {  } from '@prisma/client';
 
 async function fetchTheSnippets() {

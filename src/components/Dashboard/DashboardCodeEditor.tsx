@@ -17,6 +17,7 @@ import EditSnippetName from './EditSnippetName';
 import SetEditorLang from './SetEditorLang';
 import SnippetTagSection from './SnippetTagSection';
 import PostButton from './PostButton';
+import { snippetInfo } from '../../../global';
 interface DashboardCodeEditorProps {
   snippetInfo: snippetInfo;
   setSnippetInfo: Dispatch<SetStateAction<snippetInfo>>;
