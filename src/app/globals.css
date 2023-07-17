@@ -5,3 +5,11 @@
 .cm-scroller {
     overflow: hidden !important;
 }
+
+form {
+    color-scheme: dark;
+}
+
+main {
+    grid-template-columns: 70% 30%;
+}

@@ -23,11 +23,8 @@ const SnippetCard: FC<SnippetCardProps> = ({ snippet }) => {
   }
   const editorHeight = '45vh';
   return (
-    <Link
-      className='w-full lg:w-1/3'
-      href={`${window.location.origin}/snippet/${snippet.snippetId}`}
-    >
-      <BackgroundEmeraldToRed innerPadding='0'>
+    <Link href={`${window.location.origin}/snippet/${snippet.snippetId}`}>
+      <BackgroundEmeraldToRed innerPadding='0' marginAround='0'>
         <figure className='cursor-pointer'>
           <div className={`h-[${editorHeight}] bg-[#282c34] relative`}>
             <CodeMirror
@@ -49,6 +46,33 @@ const SnippetCard: FC<SnippetCardProps> = ({ snippet }) => {
           </div>
           <figcaption className='p-4'>
             <h3>{snippet.snippetTitle}</h3>
+            <div className='flex justify-between flex-row flex-wrap gap-2'>
+              {snippet.tagBoilerPlate ? (
+                <></>
+              ) : (
+                <>
+                  <div className='p-1 text-sm  rounded flex items-center bg-gradient-to-b from-green-500 to-emerald-700'>
+                    <div className='flex items-center'>boilerPlate</div>
+                  </div>
+
+                  <div className='p-1 text-sm  rounded flex items-center bg-gradient-to-b from-green-500 to-emerald-700'>
+                    <div className='flex items-center'>boilerPlate</div>
+                  </div>
+
+                  <div className='p-1 text-sm  rounded flex items-center bg-gradient-to-b from-green-500 to-emerald-700'>
+                    <div className='flex items-center'>boilerPlate</div>
+                  </div>
+
+                  <div className='p-1 text-sm  rounded flex items-center bg-gradient-to-b from-green-500 to-emerald-700'>
+                    <div className='flex items-center'>boilerPlate</div>
+                  </div>
+
+                  <div className='p-1 text-sm  rounded flex items-center bg-gradient-to-b from-green-500 to-emerald-700'>
+                    <div className='flex items-center'>boilerPlate</div>
+                  </div>
+                </>
+              )}
+            </div>
           </figcaption>
         </figure>
       </BackgroundEmeraldToRed>

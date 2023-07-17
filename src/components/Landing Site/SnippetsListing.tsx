@@ -4,26 +4,22 @@ import SnippetCard from './SnippetCard';
 import Modal from '@/lib/Modal';
 import { createPortal } from 'react-dom';
 import { snippetsData } from '../../../global';
+import { useSearchParamsContext } from '@/hooks/SearchParamsProvider';
 
 interface SnippetListingProps {
-  chosenLanguage: string;
   snippets: snippetsData[];
 }
 
-const SnippetListing: FC<SnippetListingProps> = ({
-  chosenLanguage,
-  snippets,
-}) => {
+const SnippetListing: FC<SnippetListingProps> = ({ snippets }) => {
+  const { queryParams } = useSearchParamsContext();
+  console.log('snippet listing', queryParams);
   return (
     <>
-      <a href='#snippets-listing'></a>
-      <div className='flex gap-2 flex-row flex-wrap lg:flex-nowrap'>
+      <div className='grid grid-cols-1 lg:grid-cols-2 gap-3'>
         {snippets.map((snippet) => (
           <SnippetCard key={snippet.snippetId} snippet={snippet} />
         ))}
       </div>
-
-      <h3 id='listing'>{chosenLanguage}</h3>
     </>
   );
 };
