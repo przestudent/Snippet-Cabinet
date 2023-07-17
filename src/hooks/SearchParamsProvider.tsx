@@ -11,8 +11,8 @@ import {
 import useQueryParams from './useQueryParams';
 
 interface searchParamsContext {
-  queryParams: Partial<{}>;
-  setQueryParams: (params: Partial<{}>) => void;
+  queryParams: Partial<{ [k: string]: string }>;
+  setQueryParams: (params: Partial<{ [k: string]: string }>) => void;
 }
 
 const SearchParamsContext = createContext<searchParamsContext>(
