@@ -16,6 +16,9 @@ const RightSectionForm: FC<RightSectionFormProps> = () => {
         for (const kv of formData.entries()) {
           newQueryParams[kv[0] as unknown as string] = kv[1];
         }
+        if (formData.get('boilerplate') === null) {
+          newQueryParams['boilerplate'] = 'false';
+        }
         setQueryParams(newQueryParams as unknown as { [k: string]: string });
       }}
     >

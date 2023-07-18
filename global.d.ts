@@ -22,3 +22,8 @@ type snippetsData = {
   snippetTitle: string;
   userOwnerId: number;
 };
+
+type searchParams = {
+  boilerPlate?: boolean;
+  sort?: 'none' | 'oldest' | 'newest';
+};

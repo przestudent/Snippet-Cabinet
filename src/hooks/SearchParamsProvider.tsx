@@ -9,10 +9,11 @@ import {
   useState,
 } from 'react';
 import useQueryParams from './useQueryParams';
+import { searchParams } from '../../global';
 
 interface searchParamsContext {
-  queryParams: Partial<{ [k: string]: string }>;
-  setQueryParams: (params: Partial<{ [k: string]: string }>) => void;
+  queryParams: searchParams;
+  setQueryParams: (params: searchParams) => void;
 }
 
 const SearchParamsContext = createContext<searchParamsContext>(
