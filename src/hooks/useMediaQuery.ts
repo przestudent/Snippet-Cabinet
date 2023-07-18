@@ -18,6 +18,7 @@ function useMediaQuery({ mediaCriteria }: { mediaCriteria: string }) {
       }
     }
     return () => mql.removeEventListener('change', Listener);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return { doesMediaMatch: doesMediaMatch };
 }

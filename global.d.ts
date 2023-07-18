@@ -23,6 +23,8 @@ type snippetsData = {
   userOwnerId: number;
 };
 
+type optimalSnippetsData = { snippetId: number; snippetTitle: string };
+
 type searchParams = {
   boilerPlate?: boolean;
   sort?: 'none' | 'oldest' | 'newest';

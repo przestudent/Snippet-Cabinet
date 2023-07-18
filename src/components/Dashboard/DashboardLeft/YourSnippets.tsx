@@ -1,7 +1,7 @@
 import { UserSnippets } from '@prisma/client';
 import { Dispatch, FC, SetStateAction, useState } from 'react';
 import Image from 'next/image';
-import { snippetInfo } from '../../../global';
+import { snippetInfo } from '../../../../global';
 import initialSnippetInfo from '@/util/initialSnippetInfo';
 
 interface YourSnippetsProps {

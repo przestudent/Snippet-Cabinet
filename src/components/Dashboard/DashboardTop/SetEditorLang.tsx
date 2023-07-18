@@ -3,7 +3,7 @@ import Image from 'next/image';
 import BackgroundEmeraldToRed from '@/lib/BackgroundEmeraldToRed';
 import useOutsideClick from '@/hooks/useOutsideClick';
 import { languageTypes } from '@prisma/client';
-import { snippetInfo } from '../../../global';
+import { snippetInfo } from '../../../../global';
 interface SetEditorLangProps {
   snippetInfo: snippetInfo;
   setEditorConfigOption: Dispatch<SetStateAction<languageTypes>>;

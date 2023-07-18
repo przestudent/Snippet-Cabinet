@@ -14,7 +14,7 @@ const GradientButton: FC<GradientButtonProps> = ({
   return (
     <a
       href={href}
-      className={`${className} rounded-md bg-gradient-to-br from-emerald-500 via-emerald-500 to-red-600  `}
+      className={`${className} rounded-md bg-gradient-to-br from-emerald-500 to-green-600  `}
     >
       {innerButtonText}
     </a>

@@ -11,25 +11,25 @@ import {
 import Image from 'next/image';
 import useOutsideClick from '@/hooks/useOutsideClick';
 import InputEditTitleField from './InputEditTitleField';
-import { snippetInfo } from '../../../global';
+import { snippetInfo } from '../../../../global';
 
 interface EditSnippetNameProps {
   snippetInfo: snippetInfo;
-  newSnippetName: MutableRefObject<string>;
+  snippetInfoRef: MutableRefObject<snippetInfo>;
 }
 
 const EditSnippetName: FC<EditSnippetNameProps> = ({
   snippetInfo,
-  newSnippetName,
+  snippetInfoRef,
 }) => {
   const editNameRef = useRef<HTMLElement>(null);
   const editNameRefInput = useRef<HTMLInputElement>(null);
   const [editName, setEditName] = useState(false);
   const [inputValue, setInputValue] = useState(snippetInfo.snippetTitle);
-  const snippetInfoRef = useRef<snippetInfo>();
   useEffect(() => {
     setInputValue(snippetInfo.snippetTitle);
     snippetInfoRef.current = snippetInfo;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [snippetInfo]);
 
   useOutsideClick({
@@ -45,7 +45,7 @@ const EditSnippetName: FC<EditSnippetNameProps> = ({
     <span ref={editNameRef} onClick={() => setEditName(true)}>
       {editName ? (
         <InputEditTitleField
-          newSnippetName={newSnippetName}
+          snippetInfoRef={snippetInfoRef}
           editNameRefInput={editNameRefInput}
           inputValue={inputValue}
           setInputValue={setInputValue}

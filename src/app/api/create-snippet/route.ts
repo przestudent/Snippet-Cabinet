@@ -33,13 +33,23 @@ export async function DELETE(req: Request) {
   //   const data = await req.json();
   const userIdObj = await prisma.user.findUnique({
     where: { clerkId: user.id },
-    select: { userId: true },
+    select: { userId: true, userSnippets: true },
   });
   const userId = (userIdObj as { userId: number }).userId;
   const reqData: number = await req.json();
-  const prismaRes = prisma.userSnippets.delete({
-    where: { snippetId: reqData },
-  });
-  const res = NextResponse.json(reqData, { status: 200 });
-  return res;
+  if (
+    userIdObj?.userSnippets &&
+    userIdObj.userSnippets.findIndex((snippet) => snippet.snippetId === reqData)
+  ) {
+    const prismaRes = prisma.userSnippets.delete({
+      where: { snippetId: reqData },
+    });
+    const res = NextResponse.json(reqData, { status: 200 });
+    return res;
+  } else {
+    return NextResponse.json(
+      { message: 'You may not interact with this snippet' },
+      { status: 403 }
+    );
+  }
 }

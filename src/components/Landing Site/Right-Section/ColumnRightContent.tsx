@@ -2,6 +2,7 @@ import BackgroundEmeraldToRed from '@/lib/BackgroundEmeraldToRed';
 import { languageTypes } from '@prisma/client';
 import { Dispatch, FunctionComponent, SetStateAction } from 'react';
 import RightSectionForm from './RightSectionForm';
+import Image from 'next/image';
 
 interface ColumnRightContentProps {
   setIsChosenLang: Dispatch<SetStateAction<Record<languageTypes, boolean>>>;
@@ -37,13 +38,14 @@ const ColumnRightContent: FunctionComponent<ColumnRightContentProps> = ({
               }}
               className={`   ${
                 isChosenLang[lang as languageTypes]
-                  ? 'border-2 border-emerald-600'
-                  : ''
-              } rounded-xl pt-2`}
+                  ? ' border-emerald-600'
+                  : 'border-transparent'
+              } rounded-xl border-2 pt-2`}
             >
               <div className='flex justify-center'>
-                <img
-                  className='w-14 h-14'
+                <Image
+                  width={40}
+                  height={40}
                   src={`/${lang}.svg`}
                   alt={`${lang} Icon`}
                 />

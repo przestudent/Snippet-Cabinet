@@ -1,9 +1,9 @@
 'use client';
 import { FC, useState } from 'react';
 import DashboardCodeEditor from './DashboardCodeEditor';
-import YourSnippets from './YourSnippets';
+import YourSnippets from './DashboardLeft/YourSnippets';
 import { UserSnippets } from '@prisma/client';
-import { snippetInfo } from '../../../global';
+import { optimalSnippetsData, snippetInfo } from '../../../global';
 import initialSnippetInfo from '@/util/initialSnippetInfo';
 
 interface DashboardInnerContentProps {
@@ -13,6 +13,14 @@ interface DashboardInnerContentProps {
 const DashboardInnerContent: FC<DashboardInnerContentProps> = ({
   snippets,
 }) => {
+  //Can we though? Can we have two query client providers? Look into it!
+  //TODO: USEQUERY HERE
+  const yourSnippetsUniqueData = snippets.map((snippet) => {
+    const data = {} as optimalSnippetsData;
+    data.snippetId = snippet.snippetId;
+    data.snippetTitle = snippet.snippetTitle;
+    return data;
+  });
   const [snippetInfo, setSnippetInfo] = useState<snippetInfo>(
     initialSnippetInfo()
   );
@@ -26,7 +34,7 @@ const DashboardInnerContent: FC<DashboardInnerContentProps> = ({
         snippets={snippets}
       />
       <DashboardCodeEditor
-        setSnippetInfo={setSnippetInfo}
+        yourSnippetsUniqueData={yourSnippetsUniqueData}
         snippetInfo={snippetInfo}
       />
     </div>

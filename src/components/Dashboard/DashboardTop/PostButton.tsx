@@ -1,31 +1,24 @@
 import GradientButton from '@/lib/GradientButton';
 import { FC, FunctionComponent, MutableRefObject } from 'react';
-import { snippetInfo, snippetsTags } from '../../../global';
+import {
+  optimalSnippetsData,
+  snippetInfo,
+  snippetsTags,
+} from '../../../../global';
 import { languageTypes } from '@prisma/client';
 
 interface PostButtonProps {
-  editorCodeRef: MutableRefObject<string>;
-  snippetInfo: snippetInfo;
-  chosenTagsRef: MutableRefObject<snippetsTags[]>;
-  publicRef: MutableRefObject<boolean>;
   editorConfigOption: languageTypes;
-  newSnippetName: MutableRefObject<string>;
+  snippetInfoRef: MutableRefObject<snippetInfo>;
+  yourSnippetsUniqueData: optimalSnippetsData[];
 }
 
 const PostButton: FC<PostButtonProps> = ({
-  editorCodeRef,
-  chosenTagsRef,
-  snippetInfo,
-  publicRef,
+  snippetInfoRef,
   editorConfigOption,
-  newSnippetName,
 }) => {
   async function postSnippetData() {
-    const data = { ...snippetInfo };
-    data.public = publicRef.current;
-    data.snippetCode = editorCodeRef.current;
-    data.tags = chosenTagsRef.current;
-    data.snippetTitle = newSnippetName.current;
+    const data = { ...snippetInfoRef.current };
     data.langType = editorConfigOption;
     const res = await fetch(`${window.location.origin}/api/create-snippet`, {
       method: 'POST',

@@ -7,19 +7,20 @@ import {
   useRef,
   MutableRefObject,
 } from 'react';
+import { snippetInfo } from '../../../../global';
 
 interface InputEditTitleFieldProps {
   setInputValue: Dispatch<SetStateAction<string>>;
   inputValue: string;
+  snippetInfoRef: MutableRefObject<snippetInfo>;
   editNameRefInput: RefObject<HTMLInputElement>;
-  newSnippetName: MutableRefObject<string>;
 }
 
 const InputEditTitleField: FC<InputEditTitleFieldProps> = ({
   editNameRefInput,
+  snippetInfoRef,
   inputValue,
   setInputValue,
-  newSnippetName,
 }) => {
   useEffect(() => {
     if (!editNameRefInput.current) return;
@@ -37,7 +38,7 @@ const InputEditTitleField: FC<InputEditTitleFieldProps> = ({
       value={inputValue}
       onChange={({ target }) => {
         setInputValue(target.value);
-        newSnippetName.current = target.value;
+        snippetInfoRef.current.snippetTitle = target.value;
       }}
     />
   );

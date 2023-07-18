@@ -9,17 +9,17 @@ import {
   SetStateAction,
   useCallback,
 } from 'react';
-import { snippetInfo } from '../../../global';
+import { snippetInfo } from '../../../../global';
 
 interface CodeEditorPlateProps {
-  editorCodeRef: MutableRefObject<string>;
   editorConfigOption: languageTypes;
   snippetInfo: snippetInfo;
   setEditorConfigOption: Dispatch<SetStateAction<languageTypes>>;
+  snippetInfoRef: MutableRefObject<snippetInfo>;
 }
 
 const CodeEditorPlate: FC<CodeEditorPlateProps> = ({
-  editorCodeRef,
+  snippetInfoRef,
   snippetInfo,
   editorConfigOption,
   setEditorConfigOption,
@@ -32,16 +32,16 @@ const CodeEditorPlate: FC<CodeEditorPlateProps> = ({
   const onChange = useCallback(
     (value: string, { view }: { view: { contentDOM: HTMLElement } }) => {
       // setFormattedText(view.contentDOM.innerHTML);
-      editorCodeRef.current = value;
-      console.log(editorCodeRef.current);
+      snippetInfoRef.current.snippetCode = value;
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   );
   return (
     <div className='min-h-[75vh] bg-[#282c34]'>
       <CodeMirror
         theme={'dark'}
-        value={snippetInfo.snippetCode}
+        value={snippetInfoRef.current.snippetCode}
         height='75vh'
         extensions={[editorConfigObj[editorConfigOption]]}
         onChange={onChange}
