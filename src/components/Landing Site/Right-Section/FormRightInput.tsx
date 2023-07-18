@@ -1,9 +1,10 @@
 import { useSearchParamsContext } from '@/hooks/SearchParamsProvider';
 import { FC, HTMLInputTypeAttribute, useEffect, useRef, useState } from 'react';
+import { searchParams } from '../../../../global';
 
 interface FormRightInputProps {
   inputType: HTMLInputTypeAttribute;
-  inputName: string;
+  inputName: keyof searchParams;
   inputId: string;
   inputLabel: string;
   inputValue: string;

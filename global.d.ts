@@ -26,6 +26,6 @@ type snippetsData = {
 type optimalSnippetsData = { snippetId: number; snippetTitle: string };
 
 type searchParams = {
-  boilerPlate?: boolean;
+  boilerplate?: boolean;
   sort?: 'none' | 'oldest' | 'newest';
 };
