@@ -12,7 +12,6 @@ interface SnippetListingProps {
 
 const SnippetListing: FC<SnippetListingProps> = ({ snippets }) => {
   const { queryParams } = useSearchParamsContext();
-  console.log('snippet listing', queryParams);
   return (
     <>
       <div className='grid grid-cols-1 lg:grid-cols-2 gap-3'>

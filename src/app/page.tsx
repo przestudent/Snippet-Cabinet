@@ -9,7 +9,9 @@ import { snippetsData } from '../../global';
 // import {  } from '@prisma/client';
 
 async function fetchTheSnippets() {
-  const snippets = await prisma.userSnippets.findMany({});
+  const snippets = await prisma.userSnippets.findMany({
+    where: { public: true },
+  });
   return snippets;
 }
 

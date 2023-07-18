@@ -48,29 +48,11 @@ const SnippetCard: FC<SnippetCardProps> = ({ snippet }) => {
             <h3>{snippet.snippetTitle}</h3>
             <div className='flex justify-between flex-row flex-wrap gap-2'>
               {snippet.tagBoilerPlate ? (
-                <></>
+                <div className='p-1 text-sm  rounded flex items-center bg-gradient-to-b from-green-500 to-emerald-700'>
+                  <div className='flex items-center'>boilerPlate</div>
+                </div>
               ) : (
-                <>
-                  <div className='p-1 text-sm  rounded flex items-center bg-gradient-to-b from-green-500 to-emerald-700'>
-                    <div className='flex items-center'>boilerPlate</div>
-                  </div>
-
-                  <div className='p-1 text-sm  rounded flex items-center bg-gradient-to-b from-green-500 to-emerald-700'>
-                    <div className='flex items-center'>boilerPlate</div>
-                  </div>
-
-                  <div className='p-1 text-sm  rounded flex items-center bg-gradient-to-b from-green-500 to-emerald-700'>
-                    <div className='flex items-center'>boilerPlate</div>
-                  </div>
-
-                  <div className='p-1 text-sm  rounded flex items-center bg-gradient-to-b from-green-500 to-emerald-700'>
-                    <div className='flex items-center'>boilerPlate</div>
-                  </div>
-
-                  <div className='p-1 text-sm  rounded flex items-center bg-gradient-to-b from-green-500 to-emerald-700'>
-                    <div className='flex items-center'>boilerPlate</div>
-                  </div>
-                </>
+                <></>
               )}
             </div>
           </figcaption>

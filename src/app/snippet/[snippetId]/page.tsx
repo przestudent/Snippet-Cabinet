@@ -9,7 +9,6 @@ interface SnippetPageProps {
 }
 
 const SnippetPage: FC<SnippetPageProps> = ({ params }) => {
-  console.log(params.snippetId);
   return (
     <BackgroundEmeraldToRed innerPadding='0'>
       <SnippetPageInside snippetId={params.snippetId} />

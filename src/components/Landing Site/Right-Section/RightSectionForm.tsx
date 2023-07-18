@@ -9,7 +9,6 @@ const RightSectionForm: FC<RightSectionFormProps> = () => {
   const { queryParams, setQueryParams } = useSearchParamsContext();
   return (
     <form
-      action={''}
       onSubmit={(e) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);

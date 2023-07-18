@@ -1,11 +1,16 @@
 import { languageTypes } from '@prisma/client';
 
+type snippetsTags = 'boilerPlate';
 type snippetInfo = {
-  editorCode: string;
-  editorLang: languageTypes;
-  snippetName: string;
-  tags: string[];
+  snippetCode: string;
+  snippetId?: number;
+  langType: languageTypes;
+  snippetTitle: string;
+  tags: snippetsTags[];
+  public: boolean;
 };
+
+type snippetInfoPostAPI = snippetInfo & {};
 
 type snippetsData = {
   snippetId: number;

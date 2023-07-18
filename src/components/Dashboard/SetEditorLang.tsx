@@ -5,27 +5,20 @@ import useOutsideClick from '@/hooks/useOutsideClick';
 import { languageTypes } from '@prisma/client';
 import { snippetInfo } from '../../../global';
 interface SetEditorLangProps {
-  setSnippetInfo: Dispatch<SetStateAction<snippetInfo>>;
   snippetInfo: snippetInfo;
-  setEditorConfigOption: Dispatch<SetStateAction<0 | 2 | 1>>;
-  editorConfigOption: 0 | 2 | 1;
+  setEditorConfigOption: Dispatch<SetStateAction<languageTypes>>;
+  editorConfigOption: languageTypes;
 }
 
 const SetEditorLang: FC<SetEditorLangProps> = ({
   snippetInfo,
   editorConfigOption,
-  setSnippetInfo,
   setEditorConfigOption,
 }) => {
   const [openDropdown, setOpenDropdown] = useState(false);
   const dropDownOptions: {
     lang: languageTypes;
-    configNumberOption: 0 | 1 | 2;
-  }[] = [
-    { lang: 'JavaScript', configNumberOption: 0 },
-    { lang: 'JSX', configNumberOption: 1 },
-    { lang: 'HTML', configNumberOption: 2 },
-  ];
+  }[] = [{ lang: 'JavaScript' }, { lang: 'JSX' }, { lang: 'HTML' }];
   //   function functionForOutside(){
   //     return function(){
   //       setOpenDropdown(false);
@@ -37,7 +30,7 @@ const SetEditorLang: FC<SetEditorLangProps> = ({
       <span>
         <span className='relative cursor-pointer w-20 p-2'>
           <span onClick={() => setOpenDropdown(true)}>
-            {snippetInfo.editorLang}
+            {editorConfigOption}
           </span>
           {openDropdown ? (
             <BackgroundEmeraldToRed
@@ -50,10 +43,7 @@ const SetEditorLang: FC<SetEditorLangProps> = ({
                   <button
                     key={d.lang}
                     onClick={() => {
-                      setEditorConfigOption(d.configNumberOption);
-                      const newSnippet = { ...snippetInfo };
-                      newSnippet.editorLang = d.lang;
-                      setSnippetInfo(newSnippet);
+                      setEditorConfigOption(d.lang);
                       setOpenDropdown(false);
                     }}
                     className={`w-full p-2 ${

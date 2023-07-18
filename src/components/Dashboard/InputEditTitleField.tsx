@@ -5,18 +5,21 @@ import {
   FC,
   useEffect,
   useRef,
+  MutableRefObject,
 } from 'react';
 
 interface InputEditTitleFieldProps {
   setInputValue: Dispatch<SetStateAction<string>>;
   inputValue: string;
   editNameRefInput: RefObject<HTMLInputElement>;
+  newSnippetName: MutableRefObject<string>;
 }
 
 const InputEditTitleField: FC<InputEditTitleFieldProps> = ({
   editNameRefInput,
   inputValue,
   setInputValue,
+  newSnippetName,
 }) => {
   useEffect(() => {
     if (!editNameRefInput.current) return;
@@ -32,7 +35,10 @@ const InputEditTitleField: FC<InputEditTitleFieldProps> = ({
       maxLength={30}
       type='text'
       value={inputValue}
-      onChange={({ target }) => setInputValue(target.value)}
+      onChange={({ target }) => {
+        setInputValue(target.value);
+        newSnippetName.current = target.value;
+      }}
     />
   );
 };
