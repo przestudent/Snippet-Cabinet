@@ -14,6 +14,7 @@ interface SnippetListingProps {
 }
 
 const SnippetListing: FC<SnippetListingProps> = ({ snippets }) => {
+  console.log('browser');
   const { queryParams } = useSearchParamsContext();
   const { isLoading, data } = useQuery({
     queryKey: ['snippets', queryParams],

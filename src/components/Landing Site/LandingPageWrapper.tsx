@@ -32,22 +32,22 @@ const LandingPageWrapper: FunctionComponent<LandingPageWrapperProps> = ({
     mediaCriteria: '(min-width:750px)',
   });
   return (
-    <QueryClientProvider client={queryClient}>
-      <main
-        className={`grid grid-cols-${
-          doesMediaMatch ? '[70%_30%]' : '1'
-        }  justify-between p-3`}
-      >
-        <SearchParamsProvider>
-          <SnippetListing snippets={snippets} />
-          <SnippetCabinetRightColumn
-            isChosenLang={isChosenLang}
-            setIsChosenLang={setIsChosenLang}
-            doesMediaMatch={doesMediaMatch}
-          />
-        </SearchParamsProvider>
-      </main>
-    </QueryClientProvider>
+    // <QueryClientProvider client={queryClient}>
+    <main
+      className={`grid grid-cols-${
+        doesMediaMatch ? '[70%_30%]' : '1'
+      }  justify-between p-3`}
+    >
+      <SearchParamsProvider>
+        <SnippetListing snippets={snippets} />
+        <SnippetCabinetRightColumn
+          isChosenLang={isChosenLang}
+          setIsChosenLang={setIsChosenLang}
+          doesMediaMatch={doesMediaMatch}
+        />
+      </SearchParamsProvider>
+    </main>
+    // </QueryClientProvider>
   );
 };
 
