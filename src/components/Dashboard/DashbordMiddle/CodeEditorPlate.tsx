@@ -16,12 +16,14 @@ interface CodeEditorPlateProps {
   snippetInfo: snippetInfo;
   setEditorConfigOption: Dispatch<SetStateAction<languageTypes>>;
   snippetInfoRef: MutableRefObject<snippetInfo>;
+  isBeingEdited: boolean;
 }
 
 const CodeEditorPlate: FC<CodeEditorPlateProps> = ({
   snippetInfoRef,
   snippetInfo,
   editorConfigOption,
+  isBeingEdited,
   setEditorConfigOption,
 }) => {
   const editorConfigObj = {
@@ -45,6 +47,7 @@ const CodeEditorPlate: FC<CodeEditorPlateProps> = ({
         height='75vh'
         extensions={[editorConfigObj[editorConfigOption]]}
         onChange={onChange}
+        editable={isBeingEdited}
       />
     </div>
   );

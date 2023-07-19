@@ -1,4 +1,4 @@
-import { languageTypes } from '@prisma/client';
+import { UserSnippets, languageTypes } from '@prisma/client';
 
 type snippetsTags = 'boilerPlate';
 type snippetInfo = {
@@ -23,9 +23,15 @@ type snippetsData = {
   userOwnerId: number;
 };
 
+type snippetPageData = snippetsData & { username: string };
+
 type optimalSnippetsData = { snippetId: number; snippetTitle: string };
 
 type searchParams = {
   boilerplate?: boolean;
   sort?: 'none' | 'oldest' | 'newest';
 };
+
+type refetchFuncUserSnippets = <TPageData>(
+  options?: (RefetchOptions & RefetchQueryFilters<TPageData>) | undefined
+) => Promise<QueryObserverResult<UserSnippets[], unknown>>;

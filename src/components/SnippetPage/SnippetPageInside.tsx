@@ -1,17 +1,31 @@
 import { FC } from 'react';
 import SnippetPageCodeEditor from './SnippetPageCodeEditor';
 import { prisma } from '@/db/db';
+import { snippetPageData } from '../../../global';
 
 interface SnippetPageInsideProps {
   snippetId: string;
 }
 
-async function fetchSnippet(snippetId: number) {
+async function fetchSnippet(
+  snippetId: number
+): Promise<snippetPageData | undefined> {
   const snippet = await prisma.userSnippets.findUnique({
     where: { snippetId: snippetId, public: true },
     include: { userOwner: true },
   });
-  return snippet;
+  if (!snippet) return undefined;
+  return {
+    createdAt: snippet.createdAt,
+    langType: snippet.langType,
+    public: snippet.public,
+    snippetCode: snippet.snippetCode,
+    snippetId: snippet.snippetId,
+    username: snippet.userOwner.username,
+    snippetTitle: snippet.snippetTitle,
+    tagBoilerPlate: snippet.tagBoilerPlate,
+    userOwnerId: snippet.userOwnerId,
+  };
 }
 
 const SnippetPageInside: FC<SnippetPageInsideProps> = async ({ snippetId }) => {
@@ -33,12 +47,22 @@ const SnippetPageInside: FC<SnippetPageInsideProps> = async ({ snippetId }) => {
   }
   return (
     <>
-      <div className='flex justify-between px-6 pt-4  border-zinc-500 border-b-2'>
-        <h1 className='text-3xl'>{snippet.snippetTitle}</h1>
-        <h2 className='text-xl'>{snippet!.userOwner.username}</h2>
+      <div className='flex justify-between px-6 pt-4 pb-2  border-zinc-500 border-b-2'>
+        <h1 className='text-3xl text-emerald-600'>{snippet.snippetTitle}</h1>
+        <h2 className='text-xl'>
+          <span className='text-emerald-500'>Author: </span>
+          {snippet!.username}
+        </h2>
       </div>
       <SnippetPageCodeEditor />
-      <div>{snippet.tagBoilerPlate}</div>
+      <div className='flex justify-between px-6 py-4 items-center'>
+        <div>
+          Tags: <div>{snippet.tagBoilerPlate}</div>
+        </div>
+        <time className='italic text-emerald-500 text-lg'>
+          {snippet.createdAt.toDateString()}
+        </time>
+      </div>
     </>
   );
 };

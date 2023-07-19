@@ -8,10 +8,12 @@ interface SetEditorLangProps {
   snippetInfo: snippetInfo;
   setEditorConfigOption: Dispatch<SetStateAction<languageTypes>>;
   editorConfigOption: languageTypes;
+  isBeingEdited: boolean;
 }
 
 const SetEditorLang: FC<SetEditorLangProps> = ({
   snippetInfo,
+  isBeingEdited,
   editorConfigOption,
   setEditorConfigOption,
 }) => {
@@ -26,10 +28,16 @@ const SetEditorLang: FC<SetEditorLangProps> = ({
   //   }
   // useOutsideClick({ref,functionForOutside})
   return (
-    <span className='mr-8'>
+    <span className='mr-4'>
       <span>
-        <span className='relative cursor-pointer w-20 p-2'>
-          <span onClick={() => setOpenDropdown(true)}>
+        <span className='relative w-20 p-2'>
+          <span
+            onClick={() => {
+              if (isBeingEdited) {
+                setOpenDropdown(true);
+              }
+            }}
+          >
             {editorConfigOption}
           </span>
           {openDropdown ? (

@@ -6,8 +6,19 @@
     overflow: hidden !important;
 }
 
-form {
+form,
+input[type="checked"],
+input[type="radio"] {
     color-scheme: dark;
+}
+
+input {
+    color-scheme: dark;
+}
+
+input:disabled,
+button:disabled {
+    cursor: not-allowed;
 }
 
 main {

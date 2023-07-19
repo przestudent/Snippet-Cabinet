@@ -1,13 +1,16 @@
 import { FC, MutableRefObject, useEffect, useState } from 'react';
-import { snippetInfo } from '../../../../global';
 import Image from 'next/image';
+import { snippetInfo } from '../../../../global';
+import ButtonPublicEyeSymbol from './ButtonPublicEyeSymbol';
 
 interface ButtonPublicProps {
   snippetInfo: snippetInfo;
   snippetInfoRef: MutableRefObject<snippetInfo>;
+  isBeingEdited: boolean;
 }
 
 const ButtonPublic: FC<ButtonPublicProps> = ({
+  isBeingEdited,
   snippetInfo,
   snippetInfoRef,
 }) => {
@@ -16,49 +19,35 @@ const ButtonPublic: FC<ButtonPublicProps> = ({
     setIsPublic(snippetInfo.public);
   }, [snippetInfo]);
   return (
-    <div className='flex items-center justify-center gap-2'>
-      {/* <button
-        onClick={() => {
-          snippetInfoRef.current.public = !snippetInfoRef.current.public;
-          setIsPublic(!isPublic);
-        }}
-      >
-        {isPublic + ''}
-      </button> */}
-      <div className='flex justify-center items-center'>
-        <div className='bg-green-600 rounded'>
-          <Image
-            src={'/eye-off-svgrepo-com.svg'}
-            alt='Oko'
-            height={30}
-            width={30}
-          />
-        </div>
-        <div className='mx-4'>
-          <div className='bg-green-600 flex items-center rounded-md w-10 h-5'>
-            <div className=' top-0 h-6 rounded-[100%] bg-white w-6'></div>
-          </div>
-        </div>
-        <Image
-          src={'/eye-off-svgrepo-com.svg'}
-          alt='Oko'
-          height={30}
-          width={30}
-        />
-      </div>
-      {snippetInfo.snippetId !== undefined ? (
-        <button
-          onClick={() => {
-            console.log('delete button clicked');
-            console.log(snippetInfo);
-          }}
-          className='w-12 h-12 rounded-xl  bg-red-700 flex items-center justify-center'
+    <div className='flex justify-center items-center'>
+      <ButtonPublicEyeSymbol
+        imageSrc='/eye-off-svgrepo-com.svg'
+        isPublic={!isPublic}
+      />
+
+      <div className='mx-4'>
+        <div
+          className={` ${
+            isPublic ? 'bg-green-600' : 'bg-zinc-600'
+          } transition-colors flex items-center rounded-md w-10 h-5`}
         >
-          <div className='text-4xl'>🗑</div>
-        </button>
-      ) : (
-        <></>
-      )}
+          <button
+            disabled={!isBeingEdited}
+            onClick={() => {
+              setIsPublic(!isPublic);
+              snippetInfoRef.current.public = !isPublic;
+              console.log(snippetInfoRef.current.public);
+            }}
+            className={`${
+              isPublic ? 'translate-x-[100%]' : 'translate-x-[0%]'
+            } transition-all h-6 rounded-[100%]  bg-white w-6`}
+          ></button>
+        </div>
+      </div>
+      <ButtonPublicEyeSymbol
+        imageSrc='/eye-show-svgrepo-com.svg'
+        isPublic={isPublic}
+      />
     </div>
   );
 };

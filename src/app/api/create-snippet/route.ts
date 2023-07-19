@@ -36,15 +36,19 @@ export async function DELETE(req: Request) {
     select: { userId: true, userSnippets: true },
   });
   const userId = (userIdObj as { userId: number }).userId;
-  const reqData: number = await req.json();
+  const reqData: { snippetId: number } = await req.json();
+
   if (
     userIdObj?.userSnippets &&
-    userIdObj.userSnippets.findIndex((snippet) => snippet.snippetId === reqData)
+    userIdObj.userSnippets.findIndex(
+      (snippet) => snippet.snippetId === reqData.snippetId
+    ) !== -1
   ) {
-    const prismaRes = prisma.userSnippets.delete({
-      where: { snippetId: reqData },
+    const prismaRes = await prisma.userSnippets.delete({
+      where: { snippetId: reqData.snippetId },
     });
     const res = NextResponse.json(reqData, { status: 200 });
+
     return res;
   } else {
     return NextResponse.json(
@@ -52,4 +56,28 @@ export async function DELETE(req: Request) {
       { status: 403 }
     );
   }
+}
+
+export async function PATCH(req: Request) {
+  const user = await currentUser();
+  if (!user) return NextResponse.json({ message: 'Not authorized' });
+  const userIdObj = await prisma.user.findUnique({
+    where: { clerkId: user.id },
+    select: { userId: true },
+  });
+  const userId = (userIdObj as { userId: number }).userId;
+  const reqData: snippetInfo = await req.json();
+  const prismaRes = await prisma.userSnippets.update({
+    data: {
+      userOwnerId: userId,
+      langType: reqData.langType,
+      public: reqData.public,
+      snippetCode: reqData.snippetCode,
+      snippetTitle: reqData.snippetTitle,
+      tagBoilerPlate: reqData.tags.includes('boilerPlate'),
+    },
+    where: { snippetId: reqData.snippetId },
+  });
+  const res = NextResponse.json(reqData, { status: 200 });
+  return res;
 }

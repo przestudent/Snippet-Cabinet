@@ -1,19 +1,20 @@
 import { FC } from 'react';
 
 interface GradientButtonProps {
-  href?: string;
   className?: string;
   innerButtonText: string;
+  isBeingEdited?: boolean;
 }
 
 const GradientButton: FC<GradientButtonProps> = ({
-  href,
   className = 'p-3  text-2xl',
   innerButtonText,
+  isBeingEdited,
 }) => {
+  //MOST LIKELY THE ERROR WAS HERE!
   return (
     <a
-      href={href}
+      // disabled={!isBeingEdited}
       className={`${className} rounded-md bg-gradient-to-br from-emerald-500 to-green-600  `}
     >
       {innerButtonText}

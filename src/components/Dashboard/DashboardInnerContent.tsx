@@ -5,6 +5,8 @@ import YourSnippets from './DashboardLeft/YourSnippets';
 import { UserSnippets } from '@prisma/client';
 import { optimalSnippetsData, snippetInfo } from '../../../global';
 import initialSnippetInfo from '@/util/initialSnippetInfo';
+import { useQuery } from 'react-query';
+import fetchUserSnippets from '@/util/fetchUserSnippets';
 
 interface DashboardInnerContentProps {
   snippets: UserSnippets[];
@@ -15,25 +17,36 @@ const DashboardInnerContent: FC<DashboardInnerContentProps> = ({
 }) => {
   //Can we though? Can we have two query client providers? Look into it!
   //TODO: USEQUERY HERE
-  const yourSnippetsUniqueData = snippets.map((snippet) => {
-    const data = {} as optimalSnippetsData;
-    data.snippetId = snippet.snippetId;
-    data.snippetTitle = snippet.snippetTitle;
-    return data;
+
+  const { refetch, data } = useQuery({
+    queryFn: fetchUserSnippets,
+    initialData: snippets,
   });
+
+  const yourSnippetsUniqueData: optimalSnippetsData[] = data
+    ? data.map((snippet) => {
+        const data = {} as optimalSnippetsData;
+        data.snippetId = snippet.snippetId;
+        data.snippetTitle = snippet.snippetTitle;
+        return data;
+      })
+    : [{ snippetId: -1, snippetTitle: '' }];
   const [snippetInfo, setSnippetInfo] = useState<snippetInfo>(
     initialSnippetInfo()
   );
-  const [isBeingEdited, setIsBeingEdited] = useState(false);
+  const [isBeingEdited, setIsBeingEdited] = useState(true);
   return (
     <div className='flex'>
       <YourSnippets
         setSnippetInfo={setSnippetInfo}
         isBeingEdited={isBeingEdited}
         setIsBeingEdited={setIsBeingEdited}
-        snippets={snippets}
+        snippets={data}
       />
       <DashboardCodeEditor
+        refetch={refetch}
+        isBeingEdited={isBeingEdited}
+        setIsBeingEdited={setIsBeingEdited}
         yourSnippetsUniqueData={yourSnippetsUniqueData}
         snippetInfo={snippetInfo}
       />

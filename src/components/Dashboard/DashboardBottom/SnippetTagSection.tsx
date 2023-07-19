@@ -7,23 +7,40 @@ import {
   useEffect,
   useState,
 } from 'react';
-import { snippetInfo, snippetsTags } from '../../../../global';
+import {
+  refetchFuncUserSnippets,
+  snippetInfo,
+  snippetsTags,
+} from '../../../../global';
 import TagsInside from './TagsInside';
-import ButtonPublic from './ButtonPublic';
+import ButtonPublicAndDelete from './ButtonPublicAndDelete';
 
 interface SnippetTagSectionProps {
   snippetInfo: snippetInfo;
+  isBeingEdited: boolean;
   snippetInfoRef: MutableRefObject<snippetInfo>;
+  refetch: refetchFuncUserSnippets;
 }
 
 const SnippetTagSection: FC<SnippetTagSectionProps> = ({
   snippetInfoRef,
+  isBeingEdited,
   snippetInfo,
+  refetch,
 }) => {
   return (
     <div className='w-full flex py-3 px-2 items-center justify-between'>
-      <TagsInside snippetInfo={snippetInfo} snippetInfoRef={snippetInfoRef} />
-      <ButtonPublic snippetInfo={snippetInfo} snippetInfoRef={snippetInfoRef} />
+      <TagsInside
+        snippetInfo={snippetInfo}
+        isBeingEdited={isBeingEdited}
+        snippetInfoRef={snippetInfoRef}
+      />
+      <ButtonPublicAndDelete
+        refetch={refetch}
+        isBeingEdited={isBeingEdited}
+        snippetInfo={snippetInfo}
+        snippetInfoRef={snippetInfoRef}
+      />
     </div>
   );
 };

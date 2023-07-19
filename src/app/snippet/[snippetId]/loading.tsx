@@ -8,8 +8,8 @@ const SnippetPageLoaderSkeleton: FC = () => {
         <h1 className='text-3xl'>Title</h1>
         <h2 className='text-xl'>username</h2>
       </div>
-      <div>dasda</div>
-      <div>snippet.tagBoilerPlate</div>
+      <div className='min-h-[75vh] bg-[#282c34]'></div>
+      <div className='h-4'>Tags</div>
     </BackgroundEmeraldToRed>
   );
 };

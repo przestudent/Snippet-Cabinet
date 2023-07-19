@@ -21,7 +21,7 @@ const SnippetListing: FC<SnippetListingProps> = ({ snippets }) => {
     queryFn: fetchFromParamsSnippets,
     initialData: snippets,
   });
-  if (isLoading) {
+  if (isLoading || data === undefined) {
     const editorHeight = '45vh';
     return (
       <div className='grid grid-cols-1 lg:grid-cols-2 gap-3'>
@@ -46,9 +46,6 @@ const SnippetListing: FC<SnippetListingProps> = ({ snippets }) => {
     );
   }
 
-  if (data === undefined) {
-    return <div>undefined</div>;
-  }
   return (
     <>
       <div className='grid grid-cols-1 lg:grid-cols-2 gap-3'>

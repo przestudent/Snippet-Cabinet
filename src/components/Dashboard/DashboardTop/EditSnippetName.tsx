@@ -16,11 +16,13 @@ import { snippetInfo } from '../../../../global';
 interface EditSnippetNameProps {
   snippetInfo: snippetInfo;
   snippetInfoRef: MutableRefObject<snippetInfo>;
+  isBeingEdited: boolean;
 }
 
 const EditSnippetName: FC<EditSnippetNameProps> = ({
   snippetInfo,
   snippetInfoRef,
+  isBeingEdited,
 }) => {
   const editNameRef = useRef<HTMLElement>(null);
   const editNameRefInput = useRef<HTMLInputElement>(null);
@@ -42,7 +44,16 @@ const EditSnippetName: FC<EditSnippetNameProps> = ({
     setEditName(false);
   }
   return (
-    <span ref={editNameRef} onClick={() => setEditName(true)}>
+    <span
+      ref={editNameRef}
+      onClick={() => {
+        if (isBeingEdited) {
+          setEditName(true);
+        } else {
+          console.log('cant edit bro');
+        }
+      }}
+    >
       {editName ? (
         <InputEditTitleField
           snippetInfoRef={snippetInfoRef}

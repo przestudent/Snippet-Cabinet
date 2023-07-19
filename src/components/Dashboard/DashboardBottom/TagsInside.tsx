@@ -10,10 +10,15 @@ import { snippetInfo, snippetsTags } from '../../../../global';
 
 interface TagsInsideProps {
   snippetInfo: snippetInfo;
+  isBeingEdited: boolean;
   snippetInfoRef: MutableRefObject<snippetInfo>;
 }
 
-const TagsInside: FC<TagsInsideProps> = ({ snippetInfo, snippetInfoRef }) => {
+const TagsInside: FC<TagsInsideProps> = ({
+  snippetInfo,
+  isBeingEdited,
+  snippetInfoRef,
+}) => {
   const avaiableTags: snippetsTags[] = ['boilerPlate'];
   const [tags, setTags] = useState<snippetsTags[]>(snippetInfo.tags);
   useEffect(() => {
@@ -29,19 +34,22 @@ const TagsInside: FC<TagsInsideProps> = ({ snippetInfo, snippetInfoRef }) => {
               key={tag}
               className={`${tags.includes(tag) ? '' : 'opacity-70'}`}
               onClick={() => {
-                const idx = tags.indexOf(tag);
-                if (idx === -1) {
-                  setTags(tags.concat(tag));
-                  snippetInfoRef.current.tags.push(tag);
-                } else {
-                  tags.splice(idx, 1);
-                  snippetInfoRef.current.tags.splice(idx, 1);
-                  setTags([...tags]);
+                if (isBeingEdited) {
+                  const idx = tags.indexOf(tag);
+                  if (idx === -1) {
+                    setTags(tags.concat(tag));
+                    snippetInfoRef.current.tags.push(tag);
+                  } else {
+                    tags.splice(idx, 1);
+                    snippetInfoRef.current.tags.splice(idx, 1);
+                    setTags([...tags]);
+                  }
                 }
               }}
             >
               <GradientButton
-                className='cursor-pointer block text-lg py-1 px-3'
+                isBeingEdited={isBeingEdited}
+                className=' block text-lg py-1 px-3'
                 innerButtonText={tag}
               />
             </li>
