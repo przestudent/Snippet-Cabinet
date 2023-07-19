@@ -59,8 +59,8 @@ const IndividualSnippet: FC<IndividualSnippetProps> = ({
         <div className=' absolute top-0 left-0 w-full h-full flex bg-[rgb(0,0,0,0.5)] items-center justify-center'>
           <div className='absolute scale-110 top-0 right-0 translate-x-[50%] accent-emerald-600 translate-y-[-50%]'>
             <input
-              type='checkbox'
-              name=''
+              type='radio'
+              name='individual-snippet'
               id=''
               checked={isBeingEdited}
               onChange={() => setIsBeingEdited(!isBeingEdited)}

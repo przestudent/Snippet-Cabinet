@@ -29,7 +29,7 @@ const SnippetTagSection: FC<SnippetTagSectionProps> = ({
   refetch,
 }) => {
   return (
-    <div className='w-full flex py-3 px-2 items-center justify-between'>
+    <div className='w-full flex-wrap flex-row flex py-3 px-2 items-center justify-center gap-y-1 sm:justify-between'>
       <TagsInside
         snippetInfo={snippetInfo}
         isBeingEdited={isBeingEdited}

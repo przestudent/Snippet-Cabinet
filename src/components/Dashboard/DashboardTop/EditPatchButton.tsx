@@ -32,7 +32,10 @@ const EditPatchButton: FunctionComponent<EditPatchButtonProps> = ({
 }) => {
   const { mutate, isLoading, isSuccess } = useMutation({
     mutationFn: patchSnippetData,
-    onSuccess: () => console.log('patched? i think'),
+    onSuccess: () => {
+      refetch();
+      setIsBeingEdited(false);
+    },
   });
   async function patchSnippetData() {
     const isUniqueName = yourSnippetsUniqueData.find(
@@ -48,20 +51,17 @@ const EditPatchButton: FunctionComponent<EditPatchButtonProps> = ({
     }
     const data = { ...snippetInfoRef.current };
     data.langType = editorConfigOption;
-    console.log(data);
     const res = await fetch(`${window.location.origin}/api/create-snippet`, {
       method: 'PATCH',
       body: JSON.stringify(data),
     });
     const data2 = await res.json();
-    console.log(data2);
   }
   return (
     <button
       disabled={!isBeingEdited}
       onClick={() => {
         mutate();
-        console.log('mutate pressed');
       }}
     >
       <GradientButton innerButtonText='Patch' />

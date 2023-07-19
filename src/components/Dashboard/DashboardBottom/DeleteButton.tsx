@@ -30,8 +30,6 @@ const DeleteButton: FC<DeleteButtonProps> = ({
         <button
           disabled={!isBeingEdited}
           onClick={() => {
-            console.log('delete button clicked');
-            console.log(snippetInfo);
             mutate();
             setOpenState(true);
           }}

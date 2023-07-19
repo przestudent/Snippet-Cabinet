@@ -18,7 +18,7 @@ const ButtonPublicAndDelete: FC<ButtonPublicAndDeleteProps> = ({
   snippetInfoRef,
 }) => {
   return (
-    <div className='flex items-center justify-center gap-2'>
+    <div className='flex sm:order-2 order-1 items-center justify-between sm:w-auto w-full flex-wrap flex-row sm:justify-center gap-2'>
       <ButtonPublic
         isBeingEdited={isBeingEdited}
         snippetInfo={snippetInfo}

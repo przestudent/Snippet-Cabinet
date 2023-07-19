@@ -27,17 +27,18 @@ const ButtonPublic: FC<ButtonPublicProps> = ({
 
       <div className='mx-4'>
         <div
+          onClick={() => {
+            if (isBeingEdited) {
+              setIsPublic(!isPublic);
+              snippetInfoRef.current.public = !isPublic;
+            }
+          }}
           className={` ${
             isPublic ? 'bg-green-600' : 'bg-zinc-600'
           } transition-colors flex items-center rounded-md w-10 h-5`}
         >
           <button
             disabled={!isBeingEdited}
-            onClick={() => {
-              setIsPublic(!isPublic);
-              snippetInfoRef.current.public = !isPublic;
-              console.log(snippetInfoRef.current.public);
-            }}
             className={`${
               isPublic ? 'translate-x-[100%]' : 'translate-x-[0%]'
             } transition-all h-6 rounded-[100%]  bg-white w-6`}

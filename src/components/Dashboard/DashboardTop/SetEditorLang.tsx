@@ -28,9 +28,9 @@ const SetEditorLang: FC<SetEditorLangProps> = ({
   //   }
   // useOutsideClick({ref,functionForOutside})
   return (
-    <span className='mr-4'>
+    <div>
       <span>
-        <span className='relative w-20 p-2'>
+        <span className='relative w-20'>
           <span
             onClick={() => {
               if (isBeingEdited) {
@@ -77,7 +77,7 @@ const SetEditorLang: FC<SetEditorLangProps> = ({
         alt='*'
         src={'/drop-down.svg'}
       />
-    </span>
+    </div>
   );
 };
 

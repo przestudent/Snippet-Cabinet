@@ -48,13 +48,18 @@ const SnippetPageInside: FC<SnippetPageInsideProps> = async ({ snippetId }) => {
   return (
     <>
       <div className='flex justify-between px-6 pt-4 pb-2  border-zinc-500 border-b-2'>
-        <h1 className='text-3xl text-emerald-600'>{snippet.snippetTitle}</h1>
-        <h2 className='text-xl'>
+        <h1 className='text-3xl text-emerald-600 text-left'>
+          {snippet.snippetTitle}
+        </h1>
+        <h2 className='text-xl text-right'>
           <span className='text-emerald-500'>Author: </span>
           {snippet!.username}
         </h2>
       </div>
-      <SnippetPageCodeEditor />
+      <SnippetPageCodeEditor
+        snippetLangType={snippet.langType}
+        snippetCode={snippet.snippetCode}
+      />
       <div className='flex justify-between px-6 py-4 items-center'>
         <div>
           Tags: <div>{snippet.tagBoilerPlate}</div>

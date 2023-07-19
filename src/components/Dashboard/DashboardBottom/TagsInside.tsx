@@ -25,7 +25,7 @@ const TagsInside: FC<TagsInsideProps> = ({
     setTags(snippetInfo.tags);
   }, [snippetInfo]);
   return (
-    <div className='flex gap-4 items-center justify-center'>
+    <div className='flex gap-4 sm:w-auto w-full order-2 sm:order-1 items-center justify-center'>
       <h3 className='w-[10%] inline'>Tags:</h3>
       <ul className='flex gap-4 flex-wrap flex-row justify-around px-4'>
         {avaiableTags.map((tag) => {

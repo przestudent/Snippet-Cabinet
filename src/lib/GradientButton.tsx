@@ -7,7 +7,7 @@ interface GradientButtonProps {
 }
 
 const GradientButton: FC<GradientButtonProps> = ({
-  className = 'p-3  text-2xl',
+  className = 'p-2  text-xl',
   innerButtonText,
   isBeingEdited,
 }) => {

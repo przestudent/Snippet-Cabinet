@@ -38,20 +38,20 @@ const DashboardTop: FC<DashboardTopProps> = ({
   yourSnippetsUniqueData,
 }) => {
   return (
-    <div className='flex py-5 items-center px-4 justify-between'>
+    <div className='flex py-5 items-center flex-row gap-y-2 md:justify-between flex-wrap px-4 justify-center'>
       <EditSnippetName
         isBeingEdited={isBeingEdited}
         snippetInfoRef={snippetInfoRef}
         snippetInfo={snippetInfo}
       />
-      <div className='flex '>
+      <div className='flex gap-x-2  justify-center flex-wrap flex-row'>
         <SetEditorLang
           isBeingEdited={isBeingEdited}
           snippetInfo={snippetInfo}
           editorConfigOption={editorConfigOption}
           setEditorConfigOption={setEditorConfigOption}
         />
-        <div className='flex gap-4 items-center'>
+        <div className='flex gap-y-4 w-full sm:w-auto gap-x-2 flex-row flex-wrap justify-center items-center'>
           <PostButton
             refetch={refetch}
             isBeingEdited={isBeingEdited}
@@ -60,14 +60,16 @@ const DashboardTop: FC<DashboardTopProps> = ({
             snippetInfoRef={snippetInfoRef}
             editorConfigOption={editorConfigOption}
           />
-          <EditPatchButton
-            refetch={refetch}
-            isBeingEdited={isBeingEdited}
-            setIsBeingEdited={setIsBeingEdited}
-            yourSnippetsUniqueData={yourSnippetsUniqueData}
-            snippetInfoRef={snippetInfoRef}
-            editorConfigOption={editorConfigOption}
-          />
+          {isBeingEdited && snippetInfo.snippetId !== undefined && (
+            <EditPatchButton
+              refetch={refetch}
+              isBeingEdited={isBeingEdited}
+              setIsBeingEdited={setIsBeingEdited}
+              yourSnippetsUniqueData={yourSnippetsUniqueData}
+              snippetInfoRef={snippetInfoRef}
+              editorConfigOption={editorConfigOption}
+            />
+          )}
         </div>
       </div>
     </div>
