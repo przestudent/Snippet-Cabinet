@@ -22,6 +22,7 @@ const IndividualSnippet: FC<IndividualSnippetProps> = ({
 }) => {
   return (
     <li
+      tabIndex={0}
       onClick={() => {
         setIsBeingEdited(!isBeingEdited);
         setChosenSnippetToEdit({

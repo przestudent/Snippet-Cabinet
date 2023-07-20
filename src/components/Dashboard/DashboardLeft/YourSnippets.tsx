@@ -28,6 +28,7 @@ const YourSnippets: FC<YourSnippetsProps> = ({
         <h2 className='p-4 text-xl'>Your snippets</h2>
         <div className='text-6xl'>
           <button
+            tabIndex={0}
             className='text-emerald-300'
             onClick={() => {
               setChosenSnippetToEdit(null);

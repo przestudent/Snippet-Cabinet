@@ -42,6 +42,7 @@ const DeleteButton: FC<DeleteButtonProps> = ({
     return (
       <>
         <button
+          tabIndex={0}
           disabled={!isBeingEdited}
           onClick={() => {
             mutate();

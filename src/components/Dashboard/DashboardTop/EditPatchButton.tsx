@@ -73,6 +73,7 @@ const EditPatchButton: FC<EditPatchButtonProps> = ({
   return (
     <>
       <button
+        tabIndex={0}
         disabled={!isBeingEdited}
         onClick={() => {
           mutate();

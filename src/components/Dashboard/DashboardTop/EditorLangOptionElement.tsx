@@ -19,6 +19,7 @@ const EditorLangOptionElement: FC<EditorLangOptionElementProps> = ({
 }) => {
   return (
     <button
+      tabIndex={0}
       key={dropDownOption.lang}
       onClick={() => {
         setEditorConfigOption(dropDownOption.lang);

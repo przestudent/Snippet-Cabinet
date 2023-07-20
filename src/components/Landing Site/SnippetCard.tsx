@@ -23,7 +23,10 @@ const SnippetCard: FC<SnippetCardProps> = ({ snippet }) => {
   }
   const editorHeight = '45vh';
   return (
-    <Link href={`${window.location.origin}/snippet/${snippet.snippetId}`}>
+    <Link
+      aria-label='Go to the snippet page'
+      href={`${window.location.origin}/snippet/${snippet.snippetId}`}
+    >
       <BackgroundEmeraldToRed innerPadding='0' marginAround='0'>
         <figure className='cursor-pointer'>
           <div className={`h-[${editorHeight}] bg-[#282c34] relative`}>

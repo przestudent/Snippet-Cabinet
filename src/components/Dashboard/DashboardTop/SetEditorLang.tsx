@@ -27,6 +27,7 @@ const SetEditorLang: FC<SetEditorLangProps> = ({
       <span>
         <span className='relative w-20'>
           <span
+            tabIndex={0}
             className={`border-b-2 border-green-600 ${
               isBeingEdited ? 'cursor-pointer' : 'cursor-not-allowed'
             }`}

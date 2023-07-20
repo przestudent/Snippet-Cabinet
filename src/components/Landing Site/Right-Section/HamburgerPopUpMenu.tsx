@@ -28,6 +28,7 @@ const HamburgerPopUpMenu: FC<HamburgerPopUpMenuProps> = ({
   return (
     <div className='m-5 fixed right-0 bottom-0 p-2 bg-emerald-600 flex items justify-center rounded-2xl  z-50'>
       <div
+        tabIndex={0}
         onClick={() => setIsOpen(true)}
         className='cursor-pointer flex items-center justify-center'
       >

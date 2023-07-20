@@ -27,6 +27,7 @@ const ButtonPublic: FC<ButtonPublicProps> = ({
 
       <div className='mx-4'>
         <div
+          tabIndex={0}
           onClick={() => {
             if (isBeingEdited) {
               setIsPublic(!isPublic);

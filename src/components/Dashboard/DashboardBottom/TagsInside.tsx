@@ -25,6 +25,7 @@ const TagsInside: FC<TagsInsideProps> = ({
         {avaiableTags.map((tag) => {
           return (
             <li
+              tabIndex={0}
               key={tag}
               className={`${
                 tags.includes(tag) ? '' : 'opacity-70'

@@ -66,6 +66,7 @@ const PostButton: FC<PostButtonProps> = ({
   return (
     <>
       <button
+        tabIndex={0}
         onClick={() => {
           if (isBeingEdited) {
             mutate();

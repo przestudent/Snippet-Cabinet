@@ -44,6 +44,7 @@ const EditSnippetName: FC<EditSnippetNameProps> = ({
   }
   return (
     <span
+      tabIndex={0}
       className={`${isBeingEdited ? 'cursor-pointer' : 'cursor-not-allowed'}`}
       ref={editNameRef}
       onClick={() => {

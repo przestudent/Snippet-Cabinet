@@ -28,6 +28,7 @@ const ColumnRightContent: FC<ColumnRightContentProps> = ({
         {Object.keys(isChosenLang).map((lang) => {
           return (
             <li
+              tabIndex={0}
               key={lang}
               onClick={() => {
                 const newLangs = { ...isChosenLang };
