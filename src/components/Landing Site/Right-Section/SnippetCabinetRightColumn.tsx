@@ -1,10 +1,5 @@
-import BackgroundEmeraldToRed from '@/lib/BackgroundEmeraldToRed';
-import { Dispatch, FunctionComponent, SetStateAction, useState } from 'react';
-import Image from 'next/image';
-import GradientButton from '@/lib/GradientButton';
+import { Dispatch, FC, SetStateAction } from 'react';
 import { languageTypes } from '@prisma/client';
-import RightSectionForm from './RightSectionForm';
-import { useSearchParamsContext } from '@/hooks/SearchParamsProvider';
 import ColumnRightContent from './ColumnRightContent';
 import HamburgerPopUpMenu from './HamburgerPopUpMenu';
 
@@ -14,7 +9,7 @@ interface WelcomeMainProps {
   isChosenLang: Record<languageTypes, boolean>;
 }
 
-const SnippetCabinetRightColumn: FunctionComponent<WelcomeMainProps> = ({
+const SnippetCabinetRightColumn: FC<WelcomeMainProps> = ({
   isChosenLang,
   setIsChosenLang,
   doesMediaMatch,

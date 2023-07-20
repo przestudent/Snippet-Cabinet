@@ -10,22 +10,25 @@ interface YourSnippetsProps {
   setSnippetInfo: Dispatch<SetStateAction<snippetInfo>>;
   setIsBeingEdited: Dispatch<SetStateAction<boolean>>;
   isBeingEdited: boolean;
+  chosenSnippetToEdit: optimalSnippetsData | null;
+  setChosenSnippetToEdit: Dispatch<SetStateAction<optimalSnippetsData | null>>;
 }
 
 const YourSnippets: FC<YourSnippetsProps> = ({
   snippets,
+  setChosenSnippetToEdit,
+  chosenSnippetToEdit,
   isBeingEdited,
   setIsBeingEdited,
   setSnippetInfo,
 }) => {
-  const [chosenSnippetToEdit, setChosenSnippetToEdit] =
-    useState<optimalSnippetsData | null>(null);
   return (
-    <aside className='px-3 border-r-2 w-[30%]  border-zinc-600'>
+    <aside className='px-3  border-r-2 w-full md:w-[30%] md:border-b-transparent border-b-2  border-zinc-600'>
       <div className='flex items-center justify-between'>
         <h2 className='p-4 text-xl'>Your snippets</h2>
         <div className='text-6xl'>
           <button
+            className='text-emerald-300'
             onClick={() => {
               setChosenSnippetToEdit(null);
               setIsBeingEdited(true);

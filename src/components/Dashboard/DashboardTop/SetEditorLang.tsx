@@ -4,6 +4,7 @@ import BackgroundEmeraldToRed from '@/lib/BackgroundEmeraldToRed';
 import useOutsideClick from '@/hooks/useOutsideClick';
 import { languageTypes } from '@prisma/client';
 import { snippetInfo } from '../../../../global';
+import EditorLangOptions from './EditorLangOptions';
 interface SetEditorLangProps {
   snippetInfo: snippetInfo;
   setEditorConfigOption: Dispatch<SetStateAction<languageTypes>>;
@@ -21,53 +22,27 @@ const SetEditorLang: FC<SetEditorLangProps> = ({
   const dropDownOptions: {
     lang: languageTypes;
   }[] = [{ lang: 'JavaScript' }, { lang: 'JSX' }, { lang: 'HTML' }];
-  //   function functionForOutside(){
-  //     return function(){
-  //       setOpenDropdown(false);
-  //     }
-  //   }
-  // useOutsideClick({ref,functionForOutside})
   return (
     <div>
       <span>
         <span className='relative w-20'>
           <span
+            className={`border-b-2 border-green-600 ${
+              isBeingEdited ? 'cursor-pointer' : 'cursor-not-allowed'
+            }`}
             onClick={() => {
               if (isBeingEdited) {
-                setOpenDropdown(true);
+                setOpenDropdown(!openDropdown);
               }
             }}
           >
             {editorConfigOption}
           </span>
-          {openDropdown ? (
-            <BackgroundEmeraldToRed
-              marginAround='0'
-              className='absolute z-50 text-center'
-              innerPadding='0'
-            >
-              {dropDownOptions.map((d, idx) => {
-                return (
-                  <button
-                    key={d.lang}
-                    onClick={() => {
-                      setEditorConfigOption(d.lang);
-                      setOpenDropdown(false);
-                    }}
-                    className={`w-full p-2 ${
-                      idx === dropDownOptions.length - 1
-                        ? ''
-                        : 'border-b-2 border-zinc-200'
-                    }`}
-                  >
-                    <div> {d.lang}</div>
-                  </button>
-                );
-              })}
-            </BackgroundEmeraldToRed>
-          ) : (
-            <></>
-          )}
+          <EditorLangOptions
+            openDropdown={openDropdown}
+            setEditorConfigOption={setEditorConfigOption}
+            setOpenDropdown={setOpenDropdown}
+          />
         </span>
       </span>
       <Image

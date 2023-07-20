@@ -2,11 +2,13 @@ import { UserSnippets } from '@prisma/client';
 import { QueryFunction } from 'react-query';
 import { searchParams } from '../../global';
 
-const fetchUserSnippets: QueryFunction<UserSnippets[]> = async (): Promise<
-  UserSnippets[]
-> => {
-  console.log('refetching user-snippets');
-  const res = await fetch(`${window.location.origin}/api/user-snippets`);
+const fetchUserSnippets: QueryFunction<
+  UserSnippets[],
+  ['private-user-snippets']
+> = async () => {
+  const res = await fetch(
+    `${window.location.origin}/api/private-user-snippets`
+  );
   if (!res.ok) {
     return [];
   }

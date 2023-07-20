@@ -1,20 +1,14 @@
 import GradientButton from '@/lib/GradientButton';
-import {
-  Dispatch,
-  FC,
-  FunctionComponent,
-  MutableRefObject,
-  SetStateAction,
-} from 'react';
+import { Dispatch, FC, MutableRefObject, SetStateAction } from 'react';
 import {
   optimalSnippetsData,
   refetchFuncUserSnippets,
   snippetInfo,
-  snippetsTags,
 } from '../../../../global';
 import { languageTypes } from '@prisma/client';
 import { useMutation } from 'react-query';
 import Modal, { useModalState } from '@/lib/Modal';
+import initialSnippetInfo from '@/util/initialSnippetInfo';
 
 interface PostButtonProps {
   editorConfigOption: languageTypes;
@@ -22,11 +16,15 @@ interface PostButtonProps {
   yourSnippetsUniqueData: optimalSnippetsData[];
   setIsBeingEdited: Dispatch<SetStateAction<boolean>>;
   isBeingEdited: boolean;
+  setSnippetInfo: Dispatch<SetStateAction<snippetInfo>>;
   refetch: refetchFuncUserSnippets;
+  setChosenSnippetToEdit: Dispatch<SetStateAction<optimalSnippetsData | null>>;
 }
 
 const PostButton: FC<PostButtonProps> = ({
+  setChosenSnippetToEdit,
   snippetInfoRef,
+  setSnippetInfo,
   isBeingEdited,
   setIsBeingEdited,
   editorConfigOption,
@@ -36,7 +34,12 @@ const PostButton: FC<PostButtonProps> = ({
   const { openState, setOpenState } = useModalState();
   const { isSuccess, isLoading, mutate, isError } = useMutation({
     mutationFn: postSnippetData,
-    onSuccess: () => refetch(),
+    onSuccess: () => {
+      refetch();
+      setChosenSnippetToEdit(null);
+      setSnippetInfo(initialSnippetInfo());
+      setIsBeingEdited(false);
+    },
   });
   async function postSnippetData() {
     const isUniqueName = yourSnippetsUniqueData.find(
@@ -52,13 +55,11 @@ const PostButton: FC<PostButtonProps> = ({
     setOpenState(true);
     const data = { ...snippetInfoRef.current };
     data.langType = editorConfigOption;
-    console.log(data);
     const res = await fetch(`${window.location.origin}/api/create-snippet`, {
       method: 'POST',
       body: JSON.stringify(data),
     });
     const data2 = await res.json();
-    console.log(data2);
   }
   //  TODO: HANDLE INVALID NAME
   return (

@@ -1,16 +1,8 @@
-import BackgroundEmeraldToRed from '@/lib/BackgroundEmeraldToRed';
-import GradientButton from '@/lib/GradientButton';
+import { Dispatch, FC, MutableRefObject, SetStateAction } from 'react';
 import {
-  FC,
-  FunctionComponent,
-  MutableRefObject,
-  useEffect,
-  useState,
-} from 'react';
-import {
+  optimalSnippetsData,
   refetchFuncUserSnippets,
   snippetInfo,
-  snippetsTags,
 } from '../../../../global';
 import TagsInside from './TagsInside';
 import ButtonPublicAndDelete from './ButtonPublicAndDelete';
@@ -20,6 +12,8 @@ interface SnippetTagSectionProps {
   isBeingEdited: boolean;
   snippetInfoRef: MutableRefObject<snippetInfo>;
   refetch: refetchFuncUserSnippets;
+  setSnippetInfo: Dispatch<SetStateAction<snippetInfo>>;
+  setChosenSnippetToEdit: Dispatch<SetStateAction<optimalSnippetsData | null>>;
 }
 
 const SnippetTagSection: FC<SnippetTagSectionProps> = ({
@@ -27,6 +21,8 @@ const SnippetTagSection: FC<SnippetTagSectionProps> = ({
   isBeingEdited,
   snippetInfo,
   refetch,
+  setChosenSnippetToEdit,
+  setSnippetInfo,
 }) => {
   return (
     <div className='w-full flex-wrap flex-row flex py-3 px-2 items-center justify-center gap-y-1 sm:justify-between'>
@@ -36,6 +32,8 @@ const SnippetTagSection: FC<SnippetTagSectionProps> = ({
         snippetInfoRef={snippetInfoRef}
       />
       <ButtonPublicAndDelete
+        setChosenSnippetToEdit={setChosenSnippetToEdit}
+        setSnippetInfo={setSnippetInfo}
         refetch={refetch}
         isBeingEdited={isBeingEdited}
         snippetInfo={snippetInfo}

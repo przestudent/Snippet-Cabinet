@@ -26,14 +26,18 @@ interface DashboardCodeEditorProps {
   setIsBeingEdited: Dispatch<SetStateAction<boolean>>;
   refetch: refetchFuncUserSnippets;
   yourSnippetsUniqueData: optimalSnippetsData[];
+  setSnippetInfo: Dispatch<SetStateAction<snippetInfo>>;
+  setChosenSnippetToEdit: Dispatch<SetStateAction<optimalSnippetsData | null>>;
 }
 
 const DashboardCodeEditor: FC<DashboardCodeEditorProps> = ({
   snippetInfo,
+  setSnippetInfo,
   setIsBeingEdited,
   isBeingEdited,
   yourSnippetsUniqueData,
   refetch,
+  setChosenSnippetToEdit,
 }) => {
   const snippetInfoRef = useRef(snippetInfo);
   const [editorConfigOption, setEditorConfigOption] = useState<languageTypes>(
@@ -45,8 +49,10 @@ const DashboardCodeEditor: FC<DashboardCodeEditorProps> = ({
   }, [snippetInfo]);
   return (
     <>
-      <article className='w-[70%] '>
+      <article className=' w-full md:w-[70%] '>
         <DashboardTop
+          setChosenSnippetToEdit={setChosenSnippetToEdit}
+          setSnippetInfo={setSnippetInfo}
           refetch={refetch}
           editorConfigOption={editorConfigOption}
           isBeingEdited={isBeingEdited}
@@ -64,6 +70,8 @@ const DashboardCodeEditor: FC<DashboardCodeEditorProps> = ({
           setEditorConfigOption={setEditorConfigOption}
         />
         <SnippetTagSection
+          setChosenSnippetToEdit={setChosenSnippetToEdit}
+          setSnippetInfo={setSnippetInfo}
           refetch={refetch}
           isBeingEdited={isBeingEdited}
           snippetInfoRef={snippetInfoRef}

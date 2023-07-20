@@ -14,13 +14,14 @@ interface SnippetListingProps {
 }
 
 const SnippetListing: FC<SnippetListingProps> = ({ snippets }) => {
-  console.log('browser');
   const { queryParams } = useSearchParamsContext();
-  const { isLoading, data } = useQuery({
-    queryKey: ['snippets', queryParams],
-    queryFn: fetchFromParamsSnippets,
-    initialData: snippets,
-  });
+  const { isLoading, data } = useQuery(
+    ['snippets', queryParams],
+    fetchFromParamsSnippets,
+    {
+      initialData: snippets,
+    }
+  );
   if (isLoading || data === undefined) {
     const editorHeight = '45vh';
     return (
@@ -53,7 +54,6 @@ const SnippetListing: FC<SnippetListingProps> = ({ snippets }) => {
           <SnippetCard key={snippet.snippetId} snippet={snippet} />
         ))}
       </div>
-      {/* <div>{isLoading ? <div>Loadimg</div> : <div>Not loading</div>}</div> */}
     </>
   );
 };

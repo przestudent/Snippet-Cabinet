@@ -23,7 +23,7 @@ const IndividualSnippet: FC<IndividualSnippetProps> = ({
   return (
     <li
       onClick={() => {
-        setIsBeingEdited(false);
+        setIsBeingEdited(!isBeingEdited);
         setChosenSnippetToEdit({
           snippetId: snippet.snippetId,
           snippetTitle: snippet.snippetTitle,
@@ -45,7 +45,9 @@ const IndividualSnippet: FC<IndividualSnippetProps> = ({
       <div>
         <h3 className='text-xl'>{snippet.snippetTitle}</h3>
         <time className='text-zinc-500'>
-          {snippet.createdAt.toDateString()}
+          {typeof snippet.createdAt === 'string'
+            ? new Date(snippet.createdAt as string).toDateString()
+            : snippet.createdAt.toDateString()}
         </time>
       </div>
       <Image
@@ -59,6 +61,7 @@ const IndividualSnippet: FC<IndividualSnippetProps> = ({
         <div className=' absolute top-0 left-0 w-full h-full flex bg-[rgb(0,0,0,0.5)] items-center justify-center'>
           <div className='absolute scale-110 top-0 right-0 translate-x-[50%] accent-emerald-600 translate-y-[-50%]'>
             <input
+              className='w-4 h-4 '
               type='radio'
               name='individual-snippet'
               id=''

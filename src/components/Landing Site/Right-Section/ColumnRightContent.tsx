@@ -1,6 +1,6 @@
 import BackgroundEmeraldToRed from '@/lib/BackgroundEmeraldToRed';
 import { languageTypes } from '@prisma/client';
-import { Dispatch, FunctionComponent, SetStateAction } from 'react';
+import { Dispatch, FC, SetStateAction } from 'react';
 import RightSectionForm from './RightSectionForm';
 import Image from 'next/image';
 
@@ -10,7 +10,7 @@ interface ColumnRightContentProps {
   className?: string;
 }
 
-const ColumnRightContent: FunctionComponent<ColumnRightContentProps> = ({
+const ColumnRightContent: FC<ColumnRightContentProps> = ({
   isChosenLang,
   setIsChosenLang,
   className,
@@ -21,7 +21,7 @@ const ColumnRightContent: FunctionComponent<ColumnRightContentProps> = ({
       marginAround='1'
       className={`ml-3 h-max sticky top-2 ${className}`}
     >
-      <h1 className='text-transparent bg-clip-text bg-gradient-to-br from-emerald-500 via-green-500 to-white text-center text-xl border-b-2 border-emerald-500'>
+      <h1 className='text-transparent bg-clip-text bg-gradient-to-br from-emerald-500 via-green-500 to-white text-center text-xl border-b-2 border-green-600'>
         Snippets Cabinet
       </h1>
       <ul className='flex  justify-center gap-2 items-center py-4 flex-wrap flex-row'>
@@ -30,7 +30,6 @@ const ColumnRightContent: FunctionComponent<ColumnRightContentProps> = ({
             <li
               key={lang}
               onClick={() => {
-                const a = isChosenLang['HTML'];
                 const newLangs = { ...isChosenLang };
                 newLangs[lang as languageTypes] =
                   !newLangs[lang as languageTypes];

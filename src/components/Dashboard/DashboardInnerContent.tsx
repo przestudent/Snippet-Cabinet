@@ -15,14 +15,16 @@ interface DashboardInnerContentProps {
 const DashboardInnerContent: FC<DashboardInnerContentProps> = ({
   snippets,
 }) => {
-  //Can we though? Can we have two query client providers? Look into it!
-  //TODO: USEQUERY HERE
-
+  const [chosenSnippetToEdit, setChosenSnippetToEdit] =
+    useState<optimalSnippetsData | null>(null);
   const { refetch, data } = useQuery({
     queryFn: fetchUserSnippets,
     initialData: snippets,
   });
-
+  const [snippetInfo, setSnippetInfo] = useState<snippetInfo>(
+    initialSnippetInfo()
+  );
+  const [isBeingEdited, setIsBeingEdited] = useState(true);
   const yourSnippetsUniqueData: optimalSnippetsData[] = data
     ? data.map((snippet) => {
         const data = {} as optimalSnippetsData;
@@ -31,20 +33,21 @@ const DashboardInnerContent: FC<DashboardInnerContentProps> = ({
         return data;
       })
     : [{ snippetId: -1, snippetTitle: '' }];
-  const [snippetInfo, setSnippetInfo] = useState<snippetInfo>(
-    initialSnippetInfo()
-  );
-  const [isBeingEdited, setIsBeingEdited] = useState(true);
+
   return (
-    <div className='flex'>
+    <div className='flex flex-wrap flex-row'>
       <YourSnippets
+        chosenSnippetToEdit={chosenSnippetToEdit}
+        setChosenSnippetToEdit={setChosenSnippetToEdit}
         setSnippetInfo={setSnippetInfo}
         isBeingEdited={isBeingEdited}
         setIsBeingEdited={setIsBeingEdited}
         snippets={data}
       />
       <DashboardCodeEditor
+        setChosenSnippetToEdit={setChosenSnippetToEdit}
         refetch={refetch}
+        setSnippetInfo={setSnippetInfo}
         isBeingEdited={isBeingEdited}
         setIsBeingEdited={setIsBeingEdited}
         yourSnippetsUniqueData={yourSnippetsUniqueData}

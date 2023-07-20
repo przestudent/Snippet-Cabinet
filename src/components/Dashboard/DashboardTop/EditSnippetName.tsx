@@ -40,20 +40,20 @@ const EditSnippetName: FC<EditSnippetNameProps> = ({
   });
   function functionForOutside() {
     if (!snippetInfoRef.current) return;
-
     setEditName(false);
   }
   return (
     <span
+      className={`${isBeingEdited ? 'cursor-pointer' : 'cursor-not-allowed'}`}
       ref={editNameRef}
       onClick={() => {
         if (isBeingEdited) {
           setEditName(true);
-        } else {
-          console.log('cant edit bro');
         }
       }}
     >
+      <span className='text-xl text-emerald-500 mr-1'>&#9998;</span>
+
       {editName ? (
         <InputEditTitleField
           snippetInfoRef={snippetInfoRef}
@@ -64,13 +64,13 @@ const EditSnippetName: FC<EditSnippetNameProps> = ({
       ) : (
         <h2 className='text-xl inline'>{inputValue}</h2>
       )}
-      <Image
-        className='pl-2 inline-block -translate-y-1'
+      {/* <Image
+        className='pl-2 inline-block -translate-y-1 fill-green-500'
         alt='edit'
         src={'edit.svg'}
         height='30'
         width='30'
-      />
+      /> */}
     </span>
   );
 };

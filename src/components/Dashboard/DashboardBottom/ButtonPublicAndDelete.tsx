@@ -1,5 +1,16 @@
-import { FC, MutableRefObject, useEffect, useState } from 'react';
-import { refetchFuncUserSnippets, snippetInfo } from '../../../../global';
+import {
+  Dispatch,
+  FC,
+  MutableRefObject,
+  SetStateAction,
+  useEffect,
+  useState,
+} from 'react';
+import {
+  optimalSnippetsData,
+  refetchFuncUserSnippets,
+  snippetInfo,
+} from '../../../../global';
 import Image from 'next/image';
 import DeleteButton from './DeleteButton';
 import ButtonPublic from './ButtonPublic';
@@ -9,10 +20,14 @@ interface ButtonPublicAndDeleteProps {
   snippetInfoRef: MutableRefObject<snippetInfo>;
   isBeingEdited: boolean;
   refetch: refetchFuncUserSnippets;
+  setSnippetInfo: Dispatch<SetStateAction<snippetInfo>>;
+  setChosenSnippetToEdit: Dispatch<SetStateAction<optimalSnippetsData | null>>;
 }
 
 const ButtonPublicAndDelete: FC<ButtonPublicAndDeleteProps> = ({
   snippetInfo,
+  setChosenSnippetToEdit,
+  setSnippetInfo,
   isBeingEdited,
   refetch,
   snippetInfoRef,
@@ -25,6 +40,8 @@ const ButtonPublicAndDelete: FC<ButtonPublicAndDeleteProps> = ({
         snippetInfoRef={snippetInfoRef}
       />
       <DeleteButton
+        setChosenSnippetToEdit={setChosenSnippetToEdit}
+        setSnippetInfo={setSnippetInfo}
         refetch={refetch}
         isBeingEdited={isBeingEdited}
         snippetInfo={snippetInfo}

@@ -1,22 +1,35 @@
-import { FC } from 'react';
-import { refetchFuncUserSnippets, snippetInfo } from '../../../../global';
+import { Dispatch, FC, SetStateAction } from 'react';
+import {
+  optimalSnippetsData,
+  refetchFuncUserSnippets,
+  snippetInfo,
+} from '../../../../global';
 import { useMutation } from 'react-query';
 import Modal, { useModalState } from '@/lib/Modal';
+import initialSnippetInfo from '@/util/initialSnippetInfo';
 
 interface DeleteButtonProps {
   snippetInfo: snippetInfo;
   refetch: refetchFuncUserSnippets;
   isBeingEdited: boolean;
+  setSnippetInfo: Dispatch<SetStateAction<snippetInfo>>;
+  setChosenSnippetToEdit: Dispatch<SetStateAction<optimalSnippetsData | null>>;
 }
 
 const DeleteButton: FC<DeleteButtonProps> = ({
   snippetInfo,
+  setChosenSnippetToEdit,
+  setSnippetInfo,
   isBeingEdited,
   refetch,
 }) => {
   const { openState, setOpenState } = useModalState(false);
   const { isLoading, isSuccess, isError, mutate } = useMutation({
-    onSuccess: () => refetch(),
+    onSuccess: () => {
+      refetch();
+      setChosenSnippetToEdit(null);
+      setSnippetInfo(initialSnippetInfo());
+    },
     mutationFn: async () => {
       const res = await fetch(`${window.location.origin}/api/create-snippet`, {
         method: 'DELETE',

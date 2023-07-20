@@ -20,13 +20,11 @@ const Modal: FC<PropsWithChildren<ModalProps>> = ({
 }) => {
   useEffect(() => {
     function windowCallback(keyEvent: globalThis.KeyboardEvent) {
-      console.log('first', keyEvent);
       if (keyEvent.key === 'Escape') {
         setOpenState(false);
       }
     }
     window.addEventListener('keydown', windowCallback);
-    console.log(window);
     return window.removeEventListener('keydown', windowCallback);
   }, []);
   if (!openState) return <></>;
@@ -34,8 +32,6 @@ const Modal: FC<PropsWithChildren<ModalProps>> = ({
     <div
       data-bgclose='true'
       onClick={(e) => {
-        console.log('hello');
-
         if ((e.target as HTMLElement).dataset['bgclose']) {
           setOpenState(false);
         }

@@ -5,9 +5,8 @@ import { searchParams } from '../../global';
 const fetchFromParamsSnippets: QueryFunction<
   UserSnippets[],
   ['snippets', searchParams]
-> = async ({ queryKey }): Promise<UserSnippets[]> => {
-  console.log('refetching');
-  const res = await fetch(`${window.location.origin}/somewhere`, {
+> = async ({ queryKey }) => {
+  const res = await fetch(`${window.location.origin}/api/user-snippets`, {
     method: 'POST',
     body: JSON.stringify(queryKey[1]),
   });

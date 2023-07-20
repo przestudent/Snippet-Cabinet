@@ -28,8 +28,12 @@ type snippetPageData = snippetsData & { username: string };
 type optimalSnippetsData = { snippetId: number; snippetTitle: string };
 
 type searchParams = {
-  boilerplate?: boolean;
+  boilerplate?: `${boolean}` | boolean;
   sort?: 'none' | 'oldest' | 'newest';
+};
+
+type dropDownOptions = {
+  lang: languageTypes;
 };
 
 type refetchFuncUserSnippets = <TPageData>(

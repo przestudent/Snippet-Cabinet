@@ -1,11 +1,5 @@
 import GradientButton from '@/lib/GradientButton';
-import {
-  FC,
-  FunctionComponent,
-  MutableRefObject,
-  useEffect,
-  useState,
-} from 'react';
+import { FC, MutableRefObject, useEffect, useState } from 'react';
 import { snippetInfo, snippetsTags } from '../../../../global';
 
 interface TagsInsideProps {
@@ -32,7 +26,9 @@ const TagsInside: FC<TagsInsideProps> = ({
           return (
             <li
               key={tag}
-              className={`${tags.includes(tag) ? '' : 'opacity-70'}`}
+              className={`${
+                tags.includes(tag) ? '' : 'opacity-70'
+              }  cursor-pointer`}
               onClick={() => {
                 if (isBeingEdited) {
                   const idx = tags.indexOf(tag);

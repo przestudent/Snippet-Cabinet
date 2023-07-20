@@ -30,7 +30,7 @@ const InputEditTitleField: FC<InputEditTitleFieldProps> = ({
 
   return (
     <input
-      className='text-zinc-100 bg-zinc-950 rounded px-2 border-2 border-emerald-400 '
+      className='text-zinc-100 bg-zinc-950 focus-visible:outline-emerald-500 focus-visible:outline rounded px-2 focus-visible:outline-2  '
       ref={editNameRefInput}
       minLength={3}
       maxLength={30}

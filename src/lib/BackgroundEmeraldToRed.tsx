@@ -1,8 +1,9 @@
-import { FC, PropsWithChildren } from 'react';
+import { CSSProperties, FC, PropsWithChildren } from 'react';
 
 type BackgroundEmeraldToRedProps = {
   colorStart?: string;
   colorEnd?: string;
+  style?: CSSProperties;
   background?: string;
   innerPadding?: string;
   className?: string;
@@ -21,9 +22,11 @@ const BackgroundEmeraldToRed: FC<
   colorEnd = 'yellow',
   colorStart = 'emerald',
   insideClassName = '',
+  style,
 }) => {
   return (
     <div
+      style={style}
       className={` m-${marginAround}  rounded-md bg-gradient-to-br from-emerald-500 to-emerald-700 p-[2px] ${className} `}
     >
       <div
