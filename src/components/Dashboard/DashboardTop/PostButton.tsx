@@ -9,6 +9,7 @@ import { languageTypes } from '@prisma/client';
 import { useMutation } from 'react-query';
 import Modal, { useModalState } from '@/lib/Modal';
 import initialSnippetInfo from '@/util/initialSnippetInfo';
+import SendingStatus from '@/lib/SendingStatus';
 
 interface PostButtonProps {
   editorConfigOption: languageTypes;
@@ -75,10 +76,11 @@ const PostButton: FC<PostButtonProps> = ({
         <GradientButton innerButtonText='Save' />
       </button>
       <Modal openState={openState} setOpenState={setOpenState}>
-        <div>
-          {isLoading + ' is loading'}
-          {isSuccess + ' is success'}
-        </div>
+        <SendingStatus
+          isError={isError}
+          isLoading={isLoading}
+          isSuccess={isSuccess}
+        />
       </Modal>
     </>
   );

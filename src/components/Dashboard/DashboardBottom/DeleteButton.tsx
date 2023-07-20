@@ -7,6 +7,7 @@ import {
 import { useMutation } from 'react-query';
 import Modal, { useModalState } from '@/lib/Modal';
 import initialSnippetInfo from '@/util/initialSnippetInfo';
+import SendingStatus from '@/lib/SendingStatus';
 
 interface DeleteButtonProps {
   snippetInfo: snippetInfo;
@@ -51,21 +52,11 @@ const DeleteButton: FC<DeleteButtonProps> = ({
           <div className='text-4xl'>🗑</div>
         </button>
         <Modal openState={openState} setOpenState={setOpenState}>
-          {isLoading && (
-            <div>
-              <h1>Loading</h1>
-            </div>
-          )}
-          {isSuccess && (
-            <div>
-              <h1>Success</h1>
-            </div>
-          )}
-          {isError && (
-            <div>
-              <h1>Error</h1>
-            </div>
-          )}
+          <SendingStatus
+            isError={isError}
+            isLoading={isLoading}
+            isSuccess={isSuccess}
+          />
         </Modal>
       </>
     );

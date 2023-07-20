@@ -20,6 +20,7 @@ const Modal: FC<PropsWithChildren<ModalProps>> = ({
 }) => {
   useEffect(() => {
     function windowCallback(keyEvent: globalThis.KeyboardEvent) {
+      console.log('keyboard event');
       if (keyEvent.key === 'Escape') {
         setOpenState(false);
       }

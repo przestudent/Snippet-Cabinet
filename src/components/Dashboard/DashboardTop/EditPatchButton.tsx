@@ -9,6 +9,7 @@ import {
 import { useMutation } from 'react-query';
 import Modal, { useModalState } from '@/lib/Modal';
 import initialSnippetInfo from '@/util/initialSnippetInfo';
+import SendingStatus from '@/lib/SendingStatus';
 
 interface EditPatchButtonProps {
   editorConfigOption: languageTypes;
@@ -80,10 +81,11 @@ const EditPatchButton: FC<EditPatchButtonProps> = ({
         <GradientButton innerButtonText='Patch' />
       </button>
       <Modal openState={openState} setOpenState={setOpenState}>
-        {isLoading && <div>Loading</div>}
-        {isError && <div>Error!</div>}
-        {isSuccess && <div>Success!</div>}
-        <div>Its for sure open</div>
+        <SendingStatus
+          isError={isError}
+          isLoading={isLoading}
+          isSuccess={isSuccess}
+        />
       </Modal>
     </>
   );

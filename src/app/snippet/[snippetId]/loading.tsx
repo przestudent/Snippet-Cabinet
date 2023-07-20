@@ -9,7 +9,7 @@ const SnippetPageLoaderSkeleton: FC = () => {
         <h2 className='text-xl'>username</h2>
       </div>
       <div className='min-h-[75vh] bg-[#282c34]'></div>
-      <div className='h-4'>Tags</div>
+      <div className='h-4 px-6 py-4'>Tags</div>
     </BackgroundEmeraldToRed>
   );
 };
