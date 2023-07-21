@@ -11,6 +11,7 @@ const createNewUser = async () => {
   if (!match) {
     const prisRes = await prisma.user.create({
       data: {
+        profileImageUrl: user!.profileImageUrl,
         clerkId: user!.id,
         email: user!.emailAddresses[0].emailAddress,
         username: user!.username ?? user!.lastName ?? '',

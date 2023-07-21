@@ -21,6 +21,7 @@ type snippetsData = {
   snippetCode: string;
   snippetTitle: string;
   userOwnerId: number;
+  profileImageUrl: string;
 };
 
 type snippetPageData = snippetsData & { username: string };

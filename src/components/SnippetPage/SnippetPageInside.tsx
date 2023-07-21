@@ -2,6 +2,7 @@ import { FC } from 'react';
 import SnippetPageCodeEditor from './SnippetPageCodeEditor';
 import { prisma } from '@/db/db';
 import { snippetPageData } from '../../../global';
+import Image from 'next/image';
 
 interface SnippetPageInsideProps {
   snippetId: string;
@@ -25,6 +26,7 @@ async function fetchSnippet(
     snippetTitle: snippet.snippetTitle,
     tagBoilerPlate: snippet.tagBoilerPlate,
     userOwnerId: snippet.userOwnerId,
+    profileImageUrl: snippet.userOwner.profileImageUrl,
   };
 }
 
@@ -51,9 +53,15 @@ const SnippetPageInside: FC<SnippetPageInsideProps> = async ({ snippetId }) => {
         <h1 className='text-3xl text-emerald-600 text-left'>
           {snippet.snippetTitle}
         </h1>
-        <h2 className='text-xl text-right'>
+        <h2 className='text-xl flex gap-2 text-right'>
           <span className='text-emerald-500'>Author: </span>
-          {snippet!.username}
+          <Image
+            src={snippet.profileImageUrl}
+            alt='Profile image'
+            width={30}
+            height={40}
+          />
+          <span>{snippet!.username}</span>
         </h2>
       </div>
       <SnippetPageCodeEditor
