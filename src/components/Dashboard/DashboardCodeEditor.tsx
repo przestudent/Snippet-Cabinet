@@ -15,7 +15,6 @@ import {
   optimalSnippetsData,
   refetchFuncUserSnippets,
   snippetInfo,
-  snippetsTags,
 } from '../../../global';
 import { languageTypes } from '@prisma/client';
 import CodeEditorPlate from './DashbordMiddle/CodeEditorPlate';

@@ -1,7 +1,7 @@
 import BackgroundEmeraldToRed from '@/lib/BackgroundEmeraldToRed';
 import { FC } from 'react';
 
-const SnippetPageLoaderSkeleton: FC = () => {
+const SnippetPageLoaderSkeleton: FC = async () => {
   return (
     <BackgroundEmeraldToRed innerPadding='0'>
       <div className='flex justify-between px-6 pt-4  border-zinc-500 border-b-2'>

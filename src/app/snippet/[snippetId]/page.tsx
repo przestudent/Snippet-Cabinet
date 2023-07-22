@@ -8,7 +8,7 @@ interface SnippetPageProps {
   params: { snippetId: string };
 }
 
-const SnippetPage: FC<SnippetPageProps> = ({ params }) => {
+const SnippetPage: FC<SnippetPageProps> = async ({ params }) => {
   return (
     <BackgroundEmeraldToRed style={{ margin: '1rem' }} innerPadding='0'>
       <SnippetPageInside snippetId={params.snippetId} />

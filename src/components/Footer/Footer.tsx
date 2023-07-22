@@ -1,7 +1,7 @@
 import BackgroundEmeraldToRed from '@/lib/BackgroundEmeraldToRed';
 import { FC } from 'react';
 
-const Footer: FC = () => {
+const Footer: FC = async () => {
   return (
     <BackgroundEmeraldToRed marginAround='2'>
       <footer className='flex justify-between text-center flex-wrap flex-row'>

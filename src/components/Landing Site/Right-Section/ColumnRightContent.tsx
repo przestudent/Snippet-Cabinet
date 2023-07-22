@@ -3,6 +3,7 @@ import { languageTypes } from '@prisma/client';
 import { Dispatch, FC, SetStateAction } from 'react';
 import RightSectionForm from './RightSectionForm';
 import Image from 'next/image';
+import RightColumnTopSection from './RightColumnTopSection';
 
 interface ColumnRightContentProps {
   setIsChosenLang: Dispatch<SetStateAction<Record<languageTypes, boolean>>>;
@@ -21,45 +22,10 @@ const ColumnRightContent: FC<ColumnRightContentProps> = ({
       marginAround='1'
       className={`ml-3 h-max sticky top-2 ${className}`}
     >
-      <h1 className='text-transparent bg-clip-text bg-gradient-to-br from-emerald-500 via-green-500 to-white text-center text-xl border-b-2 border-green-600'>
-        Snippets Cabinet
-      </h1>
-      <ul className='flex  justify-center gap-2 items-center py-4 flex-wrap flex-row'>
-        {Object.keys(isChosenLang).map((lang) => {
-          return (
-            <li
-              tabIndex={0}
-              key={lang}
-              onClick={() => {
-                const newLangs = { ...isChosenLang };
-                newLangs[lang as languageTypes] =
-                  !newLangs[lang as languageTypes];
-                setIsChosenLang(newLangs);
-              }}
-              className={`   ${
-                isChosenLang[lang as languageTypes]
-                  ? ' border-emerald-600'
-                  : 'border-transparent'
-              } rounded-xl border-2 pt-2`}
-            >
-              <div className='flex justify-center'>
-                <Image
-                  width={40}
-                  height={40}
-                  src={`/${lang}.svg`}
-                  alt={`${lang} Icon`}
-                />
-              </div>
-              <div className='text-center'>{lang}</div>
-            </li>
-          );
-        })}
-      </ul>
-      <div className='flex justify-center mb-6'>
-        <div className='border-b-2 border-green-600 text-2xl'>
-          Click to Select
-        </div>
-      </div>
+      <RightColumnTopSection
+        isChosenLang={isChosenLang}
+        setIsChosenLang={setIsChosenLang}
+      />
       <RightSectionForm />
     </BackgroundEmeraldToRed>
   );
