@@ -24,7 +24,7 @@ const IndividualSnippet: FC<IndividualSnippetProps> = ({
     <li
       tabIndex={0}
       onClick={() => {
-        setIsBeingEdited(!isBeingEdited);
+        setIsBeingEdited(false);
         setChosenSnippetToEdit({
           snippetId: snippet.snippetId,
           snippetTitle: snippet.snippetTitle,
@@ -38,7 +38,7 @@ const IndividualSnippet: FC<IndividualSnippetProps> = ({
         newSnippetInfo.snippetId = snippet.snippetId;
         setSnippetInfo(newSnippetInfo);
       }}
-      className={`flex items-center cursor-pointer relative justify-between px-2 rounded border-2 hover:scale-105 transition-[scale] duration-1000 border-emerald-500 my-2 ${
+      className={`flex items-center cursor-pointer relative justify-between px-2 rounded border-2 hover:scale-105 transition-all  border-emerald-500 my-2 ${
         snippet.snippetId === chosenSnippetToEdit?.snippetId ? 'scale-105' : ''
       }`}
       key={snippet.snippetTitle}

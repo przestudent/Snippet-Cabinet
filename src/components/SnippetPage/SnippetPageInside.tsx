@@ -8,26 +8,13 @@ interface SnippetPageInsideProps {
   snippetId: string;
 }
 
-async function fetchSnippet(
-  snippetId: number
-): Promise<snippetPageData | undefined> {
+async function fetchSnippet(snippetId: number) {
   const snippet = await prisma.userSnippets.findUnique({
     where: { snippetId: snippetId, public: true },
     include: { userOwner: true },
   });
   if (!snippet) return undefined;
-  return {
-    createdAt: snippet.createdAt,
-    langType: snippet.langType,
-    public: snippet.public,
-    snippetCode: snippet.snippetCode,
-    snippetId: snippet.snippetId,
-    username: snippet.userOwner.username,
-    snippetTitle: snippet.snippetTitle,
-    tagBoilerPlate: snippet.tagBoilerPlate,
-    userOwnerId: snippet.userOwnerId,
-    profileImageUrl: snippet.userOwner.profileImageUrl,
-  };
+  return snippet;
 }
 
 const SnippetPageInside: FC<SnippetPageInsideProps> = async ({ snippetId }) => {
@@ -56,12 +43,12 @@ const SnippetPageInside: FC<SnippetPageInsideProps> = async ({ snippetId }) => {
         <h2 className='text-xl flex gap-2 text-right'>
           <span className='text-emerald-500'>Author: </span>
           <Image
-            src={snippet.profileImageUrl}
-            alt='Profile image'
+            src={snippet.userOwner.profileImageUrl}
+            alt=''
             width={30}
             height={40}
           />
-          <span>{snippet!.username}</span>
+          <span>{snippet!.userOwner.username}</span>
         </h2>
       </div>
       <SnippetPageCodeEditor

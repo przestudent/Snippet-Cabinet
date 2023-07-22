@@ -1,13 +1,13 @@
 'use client';
 import { FC, useState } from 'react';
 import { snippetsData } from '../../../global';
-import { languageTypes } from '@prisma/client';
+import { UserSnippets, languageTypes } from '@prisma/client';
 import useMediaQuery from '@/hooks/useMediaQuery';
 import { SearchParamsProvider } from '@/hooks/SearchParamsProvider';
 import MainContent from './MainContent';
 
 interface LandingPageWrapperProps {
-  snippets: snippetsData[];
+  snippets: UserSnippets[];
 }
 
 const LandingPageWrapper: FC<LandingPageWrapperProps> = ({ snippets }) => {

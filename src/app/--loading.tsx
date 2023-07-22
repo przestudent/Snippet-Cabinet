@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-const LoadingLandingPage: FC = () => {
+const LoadingLandingPage: FC = async () => {
   return (
     <main className='h-[80vh] flex items-center justify-center'>
       <div className='animate-ping text-emerald-500 text-8xl'>Loading...</div>

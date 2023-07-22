@@ -8,9 +8,10 @@ import { useSearchParamsContext } from '@/hooks/SearchParamsProvider';
 import { useQuery } from 'react-query';
 import fetchFromParamsSnippets from '@/util/fetchFromParamsSnippets';
 import BackgroundEmeraldToRed from '@/lib/BackgroundEmeraldToRed';
+import { UserSnippets } from '@prisma/client';
 
 interface SnippetListingProps {
-  snippets: snippetsData[];
+  snippets: UserSnippets[];
 }
 
 const SnippetListing: FC<SnippetListingProps> = ({ snippets }) => {

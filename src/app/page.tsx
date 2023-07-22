@@ -16,7 +16,7 @@ async function fetchTheSnippets() {
 }
 
 export default async function Home() {
-  const snippets: snippetsData[] = await fetchTheSnippets();
+  const snippets = await fetchTheSnippets();
   return (
     <>
       <LandingPageWrapper snippets={snippets} />
