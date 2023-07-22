@@ -1,7 +1,5 @@
 import { prisma } from '@/db/db';
-import { currentUser } from '@clerk/nextjs';
 import { UserSnippets } from '@prisma/client';
-import { NextResponse } from 'next/server';
 import { searchParams } from '../../../../global';
 
 //TODO: add proper searching for the tags

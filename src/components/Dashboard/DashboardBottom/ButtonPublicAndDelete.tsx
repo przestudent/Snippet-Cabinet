@@ -1,17 +1,9 @@
-import {
-  Dispatch,
-  FC,
-  MutableRefObject,
-  SetStateAction,
-  useEffect,
-  useState,
-} from 'react';
+import { Dispatch, FC, MutableRefObject, SetStateAction } from 'react';
 import {
   optimalSnippetsData,
   refetchFuncUserSnippets,
   snippetInfo,
 } from '../../../../global';
-import Image from 'next/image';
 import DeleteButton from './DeleteButton';
 import ButtonPublic from './ButtonPublic';
 

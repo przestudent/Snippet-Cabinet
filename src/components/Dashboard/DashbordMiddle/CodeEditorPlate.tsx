@@ -18,7 +18,7 @@ interface CodeEditorPlateProps {
   snippetInfoRef: MutableRefObject<snippetInfo>;
   isBeingEdited: boolean;
 }
-
+//TODO: you might fix the delay here
 const CodeEditorPlate: FC<CodeEditorPlateProps> = ({
   snippetInfoRef,
   snippetInfo,

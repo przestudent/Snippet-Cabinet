@@ -1,7 +1,5 @@
 import { User, UserSnippets } from '@prisma/client';
 import { FC } from 'react';
-import Tag from './Tag';
-import { tagsType } from '@/private/tagsSourceOfTruth';
 
 interface TagsMappingProps {
   snippet: UserSnippets;

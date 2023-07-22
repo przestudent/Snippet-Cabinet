@@ -25,6 +25,7 @@ const PopUpColumnRight: FC<PopUpColumnRightProps> = ({
 
     window.addEventListener('keydown', keyDownListener);
     return () => window.removeEventListener('keydown', keyDownListener);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return createPortal(
     <div
