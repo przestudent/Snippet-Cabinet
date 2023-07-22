@@ -1,14 +1,13 @@
 'use client';
-import { Dispatch, FC, SetStateAction, useState } from 'react';
+import { FC } from 'react';
 import Image from 'next/image';
 import CodeMirror from '@uiw/react-codemirror';
 import { html } from '@codemirror/lang-html';
 import { javascript } from '@codemirror/lang-javascript';
 import BackgroundEmeraldToRed from '@/lib/BackgroundEmeraldToRed';
-import GradientButton from '@/lib/GradientButton';
 import Link from 'next/link';
-import { snippetsData } from '../../../global';
 import { UserSnippets } from '@prisma/client';
+import TagsMapping from '@/lib/TagsMapping';
 
 interface SnippetCardProps {
   snippet: UserSnippets;
@@ -50,15 +49,7 @@ const SnippetCard: FC<SnippetCardProps> = ({ snippet }) => {
           </div>
           <figcaption className='p-4'>
             <h3>{snippet.snippetTitle}</h3>
-            <div className='flex justify-between flex-row flex-wrap gap-2'>
-              {snippet.tagBoilerPlate ? (
-                <div className='p-1 text-sm  rounded flex items-center bg-gradient-to-b from-green-500 to-emerald-700'>
-                  <div className='flex items-center'>boilerPlate</div>
-                </div>
-              ) : (
-                <></>
-              )}
-            </div>
+            <TagsMapping snippet={snippet} />
           </figcaption>
         </figure>
       </BackgroundEmeraldToRed>

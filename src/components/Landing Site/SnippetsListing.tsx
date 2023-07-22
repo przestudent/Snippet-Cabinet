@@ -1,9 +1,6 @@
-import { snippets } from '@codemirror/lang-javascript';
 import { FC, useState } from 'react';
 import SnippetCard from './SnippetCard';
 import Modal from '@/lib/Modal';
-import { createPortal } from 'react-dom';
-import { snippetsData } from '../../../global';
 import { useSearchParamsContext } from '@/hooks/SearchParamsProvider';
 import { useQuery } from 'react-query';
 import fetchFromParamsSnippets from '@/util/fetchFromParamsSnippets';
@@ -47,7 +44,9 @@ const SnippetListing: FC<SnippetListingProps> = ({ snippets }) => {
       </div>
     );
   }
-
+  if (snippets.length === 0) {
+    return <div className='text-7xl'>None found</div>;
+  }
   return (
     <>
       <div className='grid grid-cols-1 lg:grid-cols-2 gap-3'>

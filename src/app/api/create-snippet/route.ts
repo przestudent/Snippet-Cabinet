@@ -20,7 +20,7 @@ export async function POST(req: Request) {
       public: reqData.public,
       snippetCode: reqData.snippetCode,
       snippetTitle: reqData.snippetTitle,
-      tagBoilerPlate: reqData.tags.includes('boilerPlate'),
+      tags: reqData.tags.join(' '),
     },
   });
   const res = NextResponse.json(reqData, { status: 200 });
@@ -74,7 +74,7 @@ export async function PATCH(req: Request) {
       public: reqData.public,
       snippetCode: reqData.snippetCode,
       snippetTitle: reqData.snippetTitle,
-      tagBoilerPlate: reqData.tags.includes('boilerPlate'),
+      tags: reqData.tags.join(' '),
     },
     where: { snippetId: reqData.snippetId },
   });

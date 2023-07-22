@@ -1,6 +1,7 @@
 import GradientButton from '@/lib/GradientButton';
 import { FC, MutableRefObject, useEffect, useState } from 'react';
-import { snippetInfo, snippetsTags } from '../../../../global';
+import { snippetInfo } from '../../../../global';
+import TAGS, { tagsType } from '@/private/tagsSourceOfTruth';
 
 interface TagsInsideProps {
   snippetInfo: snippetInfo;
@@ -13,16 +14,16 @@ const TagsInside: FC<TagsInsideProps> = ({
   isBeingEdited,
   snippetInfoRef,
 }) => {
-  const avaiableTags: snippetsTags[] = ['boilerPlate'];
-  const [tags, setTags] = useState<snippetsTags[]>(snippetInfo.tags);
+  //THIS SHOULD ALWAYS BE CORRECT
+  const [tags, setTags] = useState<tagsType[]>(snippetInfo.tags as tagsType[]);
   useEffect(() => {
-    setTags(snippetInfo.tags);
+    setTags(snippetInfo.tags as tagsType[]);
   }, [snippetInfo]);
   return (
     <div className='flex gap-4 sm:w-auto w-full order-2 sm:order-1 items-center justify-center'>
       <h3 className='w-[10%] inline'>Tags:</h3>
       <ul className='flex gap-4 flex-wrap flex-row justify-around px-4'>
-        {avaiableTags.map((tag) => {
+        {TAGS.map((tag) => {
           return (
             <li
               tabIndex={0}

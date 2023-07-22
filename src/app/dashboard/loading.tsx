@@ -1,7 +1,7 @@
 import BackgroundEmeraldToRed from '@/lib/BackgroundEmeraldToRed';
 import { FC } from 'react';
 
-const DashboardSkeletonLoader: FC = () => {
+const DashboardSkeletonLoader: FC = async () => {
   const snippets = Array.from(Array(5).keys());
   return (
     <BackgroundEmeraldToRed

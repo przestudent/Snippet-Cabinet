@@ -32,23 +32,19 @@ model UserSnippets {
   snippetId Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
 
-  public         Boolean
-  langType       languageTypes
-  tagBoilerPlate Boolean       @default(false)
-  snippetCode    String        @db.LongText
-  snippetTitle   String
-  userOwner      User          @relation(fields: [userOwnerId], references: [userId])
-  userOwnerId    Int
+  public       Boolean
+  langType     languageTypes
+  tags         String        @default("")
+  snippetCode  String        @db.LongText
+  snippetTitle String
+  userOwner    User          @relation(fields: [userOwnerId], references: [userId])
+  userOwnerId  Int
 
   @@unique([snippetTitle, userOwnerId])
   @@index([userOwnerId])
 }
 
 //TODO: do this later
-
-enum snippetsTags {
-  boilerPlate
-}
 
 enum languageTypes {
   JavaScript

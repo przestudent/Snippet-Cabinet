@@ -2,6 +2,7 @@ import { FC } from 'react';
 import FormRightInput from './FormRightInput';
 import FieldsetWrapper from './FieldsetWrapper';
 import { useSearchParamsContext } from '@/hooks/SearchParamsProvider';
+import TAGS from '@/private/tagsSourceOfTruth';
 
 interface RightSectionFormProps {}
 
@@ -16,20 +17,28 @@ const RightSectionForm: FC<RightSectionFormProps> = () => {
         for (const kv of formData.entries()) {
           newQueryParams[kv[0] as unknown as string] = kv[1];
         }
-        if (formData.get('boilerplate') === null) {
-          newQueryParams['boilerplate'] = 'false';
-        }
+        TAGS.forEach((tag) => {
+          if (formData.get(tag) === null) {
+            newQueryParams[tag] = 'false';
+          }
+        });
+
         setQueryParams(newQueryParams as unknown as { [k: string]: string });
       }}
     >
       <FieldsetWrapper fieldsetLegend='Filter tags'>
-        <FormRightInput
-          inputValue='true'
-          inputType='checkbox'
-          inputName='boilerplate'
-          inputId='tag-boilerplate'
-          inputLabel='BoilerPlate'
-        />
+        {TAGS.map((tag) => {
+          return (
+            <FormRightInput
+              key={tag}
+              inputValue='true'
+              inputType='checkbox'
+              inputName={tag}
+              inputId={`tag-${tag}`}
+              inputLabel={tag}
+            />
+          );
+        })}
       </FieldsetWrapper>
       <FieldsetWrapper fieldsetLegend='Sorting method'>
         <FormRightInput

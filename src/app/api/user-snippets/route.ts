@@ -1,28 +1,26 @@
 import { prisma } from '@/db/db';
-import { currentUser } from '@clerk/nextjs';
 import { UserSnippets } from '@prisma/client';
-import { NextResponse } from 'next/server';
 import { searchParams } from '../../../../global';
 
+//TODO: add proper searching for the tags
 export async function POST(req: Request) {
   const searchParams: searchParams = await req.json();
   let userSnippets: UserSnippets[];
-  const isBoilerplate =
-    searchParams.boilerplate === undefined ||
-    searchParams.boilerplate === false ||
-    searchParams.boilerplate === 'false'
-      ? undefined
-      : true;
+  const tagSearchArray: { public: true; tags?: { contains: string } }[] = [];
+  for (const [k, v] of Object.entries(searchParams)) {
+    if (v === 'true') {
+      tagSearchArray.push({ public: true, tags: { contains: k } });
+    }
+  }
+  //Otherwise it will select private ones
+  tagSearchArray.length === 0 ? tagSearchArray.push({ public: true }) : '';
   if (searchParams.sort === 'none' || searchParams.sort === undefined) {
     userSnippets = await prisma.userSnippets.findMany({
-      where: { tagBoilerPlate: isBoilerplate, public: true },
+      where: { AND: tagSearchArray },
     });
   } else {
     userSnippets = await prisma.userSnippets.findMany({
-      where: {
-        public: true,
-        tagBoilerPlate: isBoilerplate,
-      },
+      where: { AND: tagSearchArray },
       orderBy: { createdAt: searchParams.sort === 'newest' ? 'desc' : 'asc' },
     });
   }
