@@ -1,16 +1,12 @@
 'use client';
-import { Dispatch, FC, SetStateAction, useState } from 'react';
+import { FC } from 'react';
 import Image from 'next/image';
 import CodeMirror from '@uiw/react-codemirror';
 import { html } from '@codemirror/lang-html';
 import { javascript } from '@codemirror/lang-javascript';
 import BackgroundEmeraldToRed from '@/lib/BackgroundEmeraldToRed';
-import GradientButton from '@/lib/GradientButton';
 import Link from 'next/link';
-import { snippetsData } from '../../../global';
 import { UserSnippets } from '@prisma/client';
-import Tag from '@/lib/Tag';
-import { tagsType } from '@/private/tagsSourceOfTruth';
 import TagsMapping from '@/lib/TagsMapping';
 
 interface SnippetCardProps {

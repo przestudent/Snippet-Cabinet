@@ -33,7 +33,7 @@ const IndividualSnippet: FC<IndividualSnippetProps> = ({
         newSnippetInfo.langType = snippet.langType;
         newSnippetInfo.public = snippet.public;
         newSnippetInfo.snippetTitle = snippet.snippetTitle;
-        newSnippetInfo.tags = snippet.tagBoilerPlate ? ['boilerPlate'] : [];
+        newSnippetInfo.tags = snippet.tags.split(' ');
         newSnippetInfo.snippetCode = snippet.snippetCode;
         newSnippetInfo.snippetId = snippet.snippetId;
         setSnippetInfo(newSnippetInfo);

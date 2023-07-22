@@ -1,9 +1,7 @@
 import { FC } from 'react';
 import SnippetPageCodeEditor from './SnippetPageCodeEditor';
 import { prisma } from '@/db/db';
-import { snippetPageData } from '../../../global';
 import Image from 'next/image';
-import { tagsType } from '@/private/tagsSourceOfTruth';
 import TagsMapping from '@/lib/TagsMapping';
 import isNumeric from '@/util/isNumeric';
 
